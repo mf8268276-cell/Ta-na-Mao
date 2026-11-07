@@ -4,698 +4,885 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#075b50">
-<meta name="description" content="Pede Aí: encontre lojas e faça seus pedidos em um só lugar.">
-<title>Pede Aí | Seu comércio mais perto</title>
-
+<meta name="theme-color" content="#063b2b">
+<meta name="description" content="Pede Aí — encontre lojas, escolha seus produtos e peça com praticidade.">
+<title>Pede Aí | Seu comércio, mais perto</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
-:root {
-  --verde: #087c68;
-  --verde-escuro: #064d43;
-  --azul: #176b91;
-  --texto: #183b34;
-  --fundo: #f4f8f6;
+:root{
+  --deep:#043b2b;
+  --green:#08794d;
+  --lime:#a9ef73;
+  --mint:#d9f7e4;
+  --ink:#163c2c;
+  --muted:#6c8175;
+  --line:#e3eee6;
+  --bg:#f4f8f5
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'DM Sans',Arial,sans-serif}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+
+.topbar{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  color:#fff;
+  padding:18px 5% 34px;
+  background:radial-gradient(ellipse at 82% 32%,#16a568 0,transparent 35%),linear-gradient(125deg,#022b20 0%,#075c3c 58%,#13935b 100%)
+}
+.topbar:before{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  width:420px;
+  height:420px;
+  border:1px solid #b9ffd322;
+  border-radius:50%;
+  right:-150px;
+  top:-220px;
+  box-shadow:0 0 0 28px #b9ffd30b,0 0 0 60px #b9ffd308,0 0 0 95px #b9ffd306
+}
+.topbar:after{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  left:-70px;
+  bottom:-155px;
+  width:320px;
+  height:230px;
+  border-radius:50%;
+  background:#3de88b20;
+  filter:blur(30px)
+}
+.top-inner{max-width:1120px;margin:auto}
+.nav{display:flex;justify-content:space-between;align-items:center;gap:14px}
+.brand{font-size:31px;font-weight:900;letter-spacing:-1.5px}
+.brand span{color:#b7f58b}
+.tagline{font-size:11px;color:#d7f4e3;margin-top:0}
+.cart-home{
+  border:1px solid #ffffff50;
+  background:#ffffff18;
+  color:white;
+  border-radius:15px;
+  padding:12px 15px;
+  font-weight:800;
+  font-size:20px;
+  box-shadow:0 6px 18px #001d1730
+}
+.welcome{
+  padding:34px 0 0;
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  align-items:center;
+  gap:25px
+}
+.welcome-copy{max-width:600px}
+.kicker{
+  display:inline-flex;
+  background:#ffffff19;
+  border:1px solid #ffffff40;
+  border-radius:30px;
+  padding:7px 12px;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.8px;
+  color:#e5ffed
+}
+h1{
+  font-size:clamp(34px,6vw,52px);
+  line-height:1.05;
+  letter-spacing:-2px;
+  margin:17px 0 11px
+}
+h1 em{font-style:normal;color:#b7f58b}
+.welcome p{font-size:14px;line-height:1.65;color:#d9f1e4;max-width:490px}
+.search-wrap{
+  margin-top:22px;
+  background:white;
+  border-radius:16px;
+  padding:6px;
+  display:flex;
+  gap:7px;
+  box-shadow:0 12px 28px #00251d40
+}
+.search-wrap input{
+  flex:1;
+  min-width:0;
+  border:0;
+  outline:0;
+  padding:13px 14px;
+  color:#173d2d;
+  font-size:14px
+}
+.search-wrap button{
+  border:0;
+  border-radius:12px;
+  background:#08794d;
+  color:white;
+  font-weight:800;
+  padding:0 18px
+}
+.hero-art{
+  width:100%;
+  max-width:390px;
+  justify-self:end;
+  filter:drop-shadow(0 18px 25px #001d1745)
+}
+.hero-art svg{display:block;width:100%;height:auto}
+.hero-art .float{
+  animation:float 4s ease-in-out infinite alternate;
+  transform-box:fill-box;
+  transform-origin:center
+}
+.hero-art .float.delay{animation-delay:-2s}
+@keyframes float{to{transform:translateY(-9px)}}
+
+main{max-width:1120px;margin:auto;padding:30px 5% 55px}
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:12px;
+  margin-bottom:18px
+}
+.eyebrow{
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:1.3px;
+  color:#08794d;
+  text-transform:uppercase;
+  margin-bottom:6px
+}
+.section-title{font-size:25px;letter-spacing:-.7px;margin:0}
+.intro{font-size:12px;color:var(--muted);margin:5px 0 0}
+.available{font-size:11px;font-weight:800;color:#148451;white-space:nowrap}
+
+.brand-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:18px
+}
+.brand-card{
+  overflow:hidden;
+  border-radius:21px;
+  background:white;
+  border:1px solid var(--line);
+  box-shadow:0 8px 25px #123d3012;
+  transition:transform .2s,box-shadow .2s
+}
+.brand-card:hover{
+  transform:translateY(-3px);
+  box-shadow:0 14px 30px #123d3020
+}
+.brand-card.mundo{
+  background:linear-gradient(145deg,#fff 0%,#f2fff4 60%,#d4f2d9 100%)
+}
+.brand-card.torres{
+  background:radial-gradient(circle at top right,#28502a 0,#121a13 45%,#080d09 100%);
+  border:1px solid #9c812f;
+  color:#fff
+}
+.brand-logo{
+  height:126px;
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  padding:14px 20px;
+  overflow:visible;
+  background:linear-gradient(115deg,#06442e,#0c8753 70%,#b5e7ad)
+}
+.torres .brand-logo{background:linear-gradient(115deg,#073d35,#087b68 60%,#b7e6d5)}
+.brand-logo:after{
+  content:"";
+  position:absolute;
+  width:150px;
+  height:150px;
+  right:10px;
+  top:-85px;
+  border:1px solid #ffffff35;
+  border-radius:50%;
+  box-shadow:0 0 0 16px #ffffff0b,0 0 0 34px #ffffff08
+}
+.brand-logo img,.erva-mark{
+  position:absolute;
+  z-index:2;
+  left:20px;
+  bottom:-31px;
+  width:94px;
+  height:94px;
+  object-fit:cover;
+  border-radius:50%;
+  border:5px solid white;
+  box-shadow:0 6px 18px #001b1238;
+  background:#fff
+}
+.erva-mark{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:1px;
+  color:#075b37;
+  background:linear-gradient(145deg,#fff,#e0f8e6);
+  font-weight:900;
+  font-size:10px;
+  letter-spacing:-.3px;
+  text-align:center
+}
+.erva-mark svg{width:37px;height:37px;display:block}
+.torres .brand-logo img{border-color:#e4c45e}
+.banner-label{
+  position:relative;
+  z-index:1;
+  color:#fff;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.8px;
+  background:#002e254d;
+  border:1px solid #ffffff55;
+  padding:8px 11px;
+  border-radius:30px
+}
+.brand-content{padding:42px 20px 19px}
+.pill{
+  display:inline-block;
+  background:#e6f7e9;
+  color:#08764f;
+  padding:6px 10px;
+  border-radius:30px;
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:.7px
+}
+.torres .pill{
+  background:#3a3219;
+  color:#f5d477;
+  border:1px solid #806323
+}
+.brand-content h2{
+  font-size:23px;
+  letter-spacing:-.6px;
+  margin:10px 0 5px;
+  color:#125333
+}
+.torres .brand-content h2{color:#f2d16b}
+.brand-content p{
+  font-size:12px;
+  line-height:1.55;
+  color:#6c8175;
+  min-height:37px;
+  margin:0
+}
+.torres .brand-content p{color:#d1d8ce}
+.store-meta{font-size:11px;color:#61776e;margin:12px 0 14px}
+.torres .store-meta{color:#d8cfae}
+.primary{
+  width:100%;
+  border:0;
+  border-radius:12px;
+  padding:13px 16px;
+  font-weight:900;
+  color:#fff;
+  background:linear-gradient(100deg,#075a38,#139b5d,#80cf48);
+  box-shadow:0 6px 15px #0b6b3d35
+}
+.torres .primary{
+  color:#17130a;
+  background:linear-gradient(100deg,#9b6b12,#f2d16b,#a87a1b)
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+.how{
+  margin-top:32px;
+  border:1px solid #d8ebdf;
+  border-radius:19px;
+  background:linear-gradient(115deg,#e3f5e9,#f2faf4);
+  padding:22px
 }
-
-body {
-  font-family: 'DM Sans', Arial, sans-serif;
-  background: var(--fundo);
-  color: var(--texto);
+.how h2{font-size:19px;margin:0}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:17px}
+.step{display:flex;gap:10px;align-items:flex-start}
+.step-icon{
+  width:36px;
+  height:36px;
+  flex:none;
+  border-radius:12px;
+  background:white;
+  display:grid;
+  place-items:center
 }
+.step b{display:block;font-size:12px;margin:2px 0 4px}
+.step small{font-size:10px;line-height:1.5;color:var(--muted)}
 
-/* CABEÇALHO */
-
-header {
-  background: linear-gradient(115deg, #064d43, #087c68, #176b91);
-  color: white;
-  padding: 19px 6%;
+.catalog{display:none;margin-top:30px}
+.catalog.active{display:block}
+.catalog-tools{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:10px;
+  align-items:center;
+  margin:14px 0 18px
 }
-
-.topo {
-  max-width: 1200px;
-  margin: auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
+.catalog .search-wrap{margin:0;box-shadow:none;border:1px solid #dce9df}
+.catalog .search-wrap input{padding:12px 14px}
+.cart-shortcut{
+  border:0;
+  border-radius:13px;
+  padding:13px 16px;
+  background:#075a38;
+  color:white;
+  font-weight:900;
+  white-space:nowrap
 }
-
-.logo {
-  font-size: 30px;
-  font-weight: 800;
-  letter-spacing: -1.5px;
+.torres-mode .cart-shortcut{
+  background:linear-gradient(100deg,#9b6b12,#f2d16b);
+  color:#17130a
 }
-
-.logo span {
-  color: #b9f2d4;
+.catalog-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-bottom:16px
 }
-
-.slogan {
-  font-size: 12px;
-  color: #d7f3e9;
-  margin-top: 3px;
+.catalog-head h2{margin:0}
+.back{
+  border:1px solid #cbd8c9;
+  background:#fff;
+  color:#31583d;
+  padding:10px 14px;
+  border-radius:12px
 }
-
-.localizacao {
-  background: #ffffff18;
-  border: 1px solid #ffffff40;
-  border-radius: 30px;
-  padding: 10px 15px;
-  font-size: 12px;
+.products{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:14px
 }
-
-/* DESTAQUE PRINCIPAL */
-
-.hero {
-  min-height: 440px;
-  display: flex;
-  align-items: center;
-  color: white;
-  background:
-    linear-gradient(90deg,
-      rgba(3, 49, 41, .96) 0%,
-      rgba(5, 73, 59, .85) 45%,
-      rgba(5, 73, 59, .15) 100%),
-    url("https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&w=1800&q=85")
-    center 55% / cover no-repeat;
+.product{
+  border-radius:17px;
+  background:#fff;
+  border:1px solid #dce9d9;
+  padding:15px;
+  text-align:center;
+  box-shadow:0 5px 16px #1b42200c
 }
-
-.hero-conteudo {
-  width: 100%;
-  max-width: 1200px;
-  margin: auto;
-  padding: 65px 6%;
+.torres-mode .product{
+  color:#f8f3e5;
+  background:#141812;
+  border-color:#806323
 }
-
-.hero-etiqueta {
-  display: inline-block;
-  background: #ffffff20;
-  border: 1px solid #ffffff40;
-  padding: 8px 13px;
-  border-radius: 30px;
-  font-size: 12px;
-  margin-bottom: 20px;
+.fruit{font-size:42px;min-height:55px}
+.product h3{margin:8px 0 5px;font-size:17px}
+.product p{margin:0 0 12px;color:#728176;font-size:13px}
+.torres-mode .product p{color:#c6b98d}
+.product select{
+  width:100%;
+  padding:10px;
+  border-radius:10px;
+  border:1px solid #d5e0d3;
+  background:#fbfffa;
+  margin-bottom:9px
 }
-
-.hero h1 {
-  font-size: clamp(35px, 5vw, 57px);
-  line-height: 1.08;
-  max-width: 600px;
-  letter-spacing: -2px;
-  margin-bottom: 18px;
+.add{
+  width:100%;
+  padding:10px;
+  border:0;
+  border-radius:10px;
+  color:white;
+  background:#237b3c;
+  font-weight:700
 }
-
-.hero h1 span {
-  color: #a9f0ca;
+.torres-mode .add{
+  color:#17130a;
+  background:linear-gradient(100deg,#a4771c,#f0cf68)
 }
-
-.hero p {
-  max-width: 490px;
-  color: #e0f2eb;
-  font-size: 15px;
-  line-height: 1.8;
+.order{
+  display:none;
+  margin-top:28px;
+  padding:22px;
+  border-radius:20px;
+  background:#fff;
+  box-shadow:0 10px 28px #17332412
 }
-
-.busca {
-  display: flex;
-  max-width: 570px;
-  background: white;
-  padding: 7px;
-  border-radius: 12px;
-  margin-top: 27px;
-  box-shadow: 0 10px 30px #001f1930;
+.order.active{display:block}
+.torres-mode .order{
+  background:#151812;
+  color:#f8f3e5;
+  border:1px solid #806323
 }
-
-.busca input {
-  flex: 1;
-  min-width: 0;
-  border: none;
-  outline: none;
-  padding: 13px;
-  font-size: 14px;
-  color: #183b34;
-  background: transparent;
+.order h2{margin-top:0}
+.cart-list{padding-left:20px;line-height:1.8}
+.total{font-size:18px;font-weight:900}
+.form-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+  margin-top:18px
 }
-
-.busca button {
-  border: none;
-  border-radius: 8px;
-  padding: 0 22px;
-  background: linear-gradient(110deg, #087c68, #176b91);
-  color: white;
-  font-weight: 700;
-  cursor: pointer;
+label{display:block;font-size:13px;font-weight:700;margin-bottom:5px}
+input,select,textarea{
+  width:100%;
+  padding:12px;
+  border:1px solid #d5dfd3;
+  border-radius:10px;
+  background:#fff;
+  color:#1c3324
 }
-
-/* CONTEÚDO */
-
-main {
-  max-width: 1200px;
-  margin: auto;
-  padding: 45px 6% 60px;
+textarea{min-height:76px;resize:vertical}
+.send{
+  margin-top:16px;
+  width:100%;
+  border:0;
+  border-radius:13px;
+  padding:15px;
+  color:#fff;
+  background:#16833f;
+  font-weight:900
 }
-
-.secao-topo {
-  display: flex;
-  justify-content: space-between;
-  align-items: end;
-  gap: 15px;
-  margin-bottom: 22px;
+.torres-mode .send{
+  color:#17130a;
+  background:linear-gradient(100deg,#a4771c,#f0cf68)
 }
-
-.secao-topo h2 {
-  font-size: 25px;
-  letter-spacing: -.7px;
+.note{color:#748176;font-size:12px;line-height:1.5;margin-top:12px}
+footer{
+  background:#052f29;
+  color:#cfe5dc;
+  text-align:center;
+  padding:25px 5%;
+  font-size:11px;
+  line-height:1.8
 }
+footer strong{display:block;font-size:22px;color:white}
 
-.secao-topo p {
-  color: #71817d;
-  font-size: 13px;
-  margin-top: 6px;
+@media(max-width:680px){
+  .topbar{padding:16px 5% 25px}
+  .brand{font-size:28px}
+  .welcome{padding-top:28px;grid-template-columns:1fr;gap:5px}
+  .hero-art{max-width:245px;justify-self:center;margin-top:6px}
+  .welcome-copy{max-width:none}
+  h1{font-size:37px}
+  .welcome p{font-size:13px}
+  main{padding:25px 5% 42px}
+  .section-head{align-items:flex-start;flex-direction:column}
+  .brand-grid{grid-template-columns:1fr;gap:15px}
+  .brand-logo{height:108px}
+  .brand-content{padding:39px 17px 17px}
+  .steps{grid-template-columns:1fr;gap:13px}
+  .how{padding:19px 16px}
+  .products{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .form-grid{grid-template-columns:1fr}
 }
-
-.disponivel {
-  color: #087c68;
-  font-size: 12px;
-  font-weight: 700;
-}
-
-/* CATEGORIAS */
-
-.categorias {
-  display: flex;
-  gap: 9px;
-  overflow-x: auto;
-  padding: 3px 0 22px;
-}
-
-.categoria {
-  white-space: nowrap;
-  border: 1px solid #dce8e3;
-  background: white;
-  color: #35564d;
-  border-radius: 30px;
-  padding: 11px 18px;
-  cursor: pointer;
-  font-size: 13px;
-  font-weight: 600;
-}
-
-.categoria.ativa {
-  background: #087c68;
-  color: white;
-  border-color: #087c68;
-}
-
-/* LOJAS */
-
-.lojas {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-  gap: 24px;
-}
-
-.loja {
-  background: white;
-  border: 1px solid #e5ece8;
-  border-radius: 19px;
-  overflow: hidden;
-  box-shadow: 0 7px 24px #183b3410;
-  transition: .25s;
-}
-
-.loja:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 14px 32px #183b3420;
-}
-
-.capa {
-  height: 195px;
-  position: relative;
-  display: flex;
-  align-items: end;
-  padding: 17px;
-  background-size: cover;
-  background-position: center;
-}
-
-.capa::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(0deg, #061e18a8, transparent 75%);
-}
-
-.capa-erva {
-  background-image:
-    url("https://images.unsplash.com/photo-1513558161293-cdaf765edfd4?auto=format&fit=crop&w=1000&q=85");
-}
-
-.capa-torres {
-  background-image:
-    url("https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=1000&q=85");
-}
-
-.capa-texto {
-  position: relative;
-  z-index: 1;
-  color: white;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: .5px;
-}
-
-.conteudo-loja {
-  padding: 22px;
-}
-
-.etiqueta {
-  display: inline-block;
-  background: #e8f5ed;
-  color: #087c68;
-  padding: 6px 11px;
-  border-radius: 30px;
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: .6px;
-  margin-bottom: 12px;
-}
-
-.conteudo-loja h3 {
-  font-size: 22px;
-  margin-bottom: 8px;
-}
-
-.conteudo-loja p {
-  color: #71817d;
-  font-size: 13px;
-  line-height: 1.7;
-  min-height: 44px;
-}
-
-.cidade {
-  color: #637a71;
-  font-size: 12px;
-  margin: 17px 0;
-}
-
-.entrar {
-  display: block;
-  text-decoration: none;
-  text-align: center;
-  color: white;
-  background: linear-gradient(110deg, #087c68, #176b91);
-  padding: 14px;
-  border-radius: 10px;
-  font-size: 14px;
-  font-weight: 700;
-  transition: .2s;
-}
-
-.entrar:hover {
-  filter: brightness(1.1);
-}
-
-.sem-resultado {
-  display: none;
-  text-align: center;
-  padding: 30px;
-  color: #71817d;
-}
-
-/* COMO FUNCIONA */
-
-.como-funciona {
-  margin-top: 55px;
-  padding: 30px;
-  border-radius: 20px;
-  background: linear-gradient(120deg, #e5f4ec, #e7f1f7);
-}
-
-.como-funciona h2 {
-  font-size: 23px;
-  margin-bottom: 25px;
-}
-
-.passos {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 22px;
-}
-
-.passo {
-  padding: 8px;
-}
-
-.passo-icone {
-  width: 48px;
-  height: 48px;
-  display: grid;
-  place-items: center;
-  background: white;
-  border-radius: 14px;
-  font-size: 23px;
-  margin-bottom: 13px;
-}
-
-.passo h3 {
-  font-size: 15px;
-  margin-bottom: 7px;
-}
-
-.passo p {
-  font-size: 13px;
-  line-height: 1.6;
-  color: #647b72;
-}
-
-/* RODAPÉ */
-
-footer {
-  background: #073a32;
-  color: #d7e9e2;
-  text-align: center;
-  padding: 35px 6%;
-  font-size: 12px;
-  line-height: 1.9;
-}
-
-footer strong {
-  color: white;
-  font-size: 25px;
-}
-
-/* CELULAR */
-
-@media(max-width: 600px) {
-  header {
-    padding: 17px 5%;
-  }
-
-  .logo {
-    font-size: 25px;
-  }
-
-  .localizacao {
-    font-size: 10px;
-    padding: 9px 11px;
-  }
-
-  .hero {
-    min-height: 410px;
-    background-position: 60% center;
-  }
-
-  .hero-conteudo {
-    padding: 48px 5%;
-  }
-
-  .hero h1 {
-    font-size: 39px;
-  }
-
-  main {
-    padding: 32px 5% 45px;
-  }
-
-  .secao-topo {
-    align-items: start;
-    flex-direction: column;
-  }
-
-  .lojas {
-    grid-template-columns: 1fr;
-  }
-
-  .capa {
-    height: 210px;
-  }
-
-  .como-funciona {
-    padding: 23px 17px;
-  }
-
-  .busca button {
-    padding: 0 14px;
-  }
+@media(max-width:390px){
+  .catalog-tools{grid-template-columns:1fr}
+  .cart-shortcut{width:100%}
+  .search-wrap button{padding:0 12px}
 }
 </style>
 </head>
 
 <body>
+<header class="topbar">
+  <div class="top-inner">
+    <nav class="nav">
+      <div>
+        <div class="brand">Pede <span>Aí.</span></div>
+        <div class="tagline">Seu comércio, mais perto.</div>
+      </div>
+      <button class="cart-home" onclick="goToCart()" aria-label="Ir para sacola">🛒</button>
+    </nav>
 
-<header>
-  <div class="topo">
-    <div>
-      <div class="logo">Pede <span>Aí.</span></div>
-      <div class="slogan">Seu comércio, mais perto.</div>
-    </div>
+    <section class="welcome">
+      <div class="welcome-copy">
+        <span class="kicker">🛍️ SEU JEITO MAIS FÁCIL DE COMPRAR</span>
+        <h1>O que você procura,<br><em>está aqui.</em></h1>
+        <p>Encontre suas lojas favoritas, escolha seus produtos e faça seu pedido diretamente com quem vende.</p>
 
-    <div class="localizacao">📍 Mato Grosso</div>
+        <div class="search-wrap">
+          <input id="storeSearch" type="search" placeholder="Buscar loja..." aria-label="Buscar loja">
+          <button type="button" onclick="filterBrands()">Buscar</button>
+        </div>
+      </div>
+
+      <div class="hero-art" aria-hidden="true">
+        <svg viewBox="0 0 420 300" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="bag" x1="0" y1="0" x2="1" y2="1">
+              <stop stop-color="#c5ff8c"/>
+              <stop offset="1" stop-color="#51c979"/>
+            </linearGradient>
+            <linearGradient id="cup" x1="0" y1="0" x2="1" y2="1">
+              <stop stop-color="#fff"/>
+              <stop offset="1" stop-color="#d8f7e2"/>
+            </linearGradient>
+          </defs>
+          <ellipse cx="213" cy="267" rx="145" ry="16" fill="#001f18" opacity=".24"/>
+          <g class="float">
+            <path d="M110 104h190l-18 143H128z" fill="url(#bag)" stroke="#e3ffd1" stroke-width="4"/>
+            <path d="M151 108c0-48 18-72 53-72s53 24 53 72" fill="none" stroke="#d9ffd1" stroke-width="12" stroke-linecap="round"/>
+            <path d="M147 158h116" stroke="#08794d" stroke-width="5" stroke-linecap="round" opacity=".3"/>
+            <text x="205" y="190" text-anchor="middle" font-size="27" font-weight="900" fill="#075b37">Pede</text>
+            <text x="205" y="218" text-anchor="middle" font-size="27" font-weight="900" fill="#075b37">Aí!</text>
+          </g>
+          <g class="float delay">
+            <circle cx="315" cy="91" r="35" fill="#fff" opacity=".96"/>
+            <path d="M300 91h30M315 76v30" stroke="#11975b" stroke-width="7" stroke-linecap="round"/>
+            <circle cx="92" cy="205" r="25" fill="#b5f38b"/>
+            <path d="M81 205q11-20 22 0q-11 20-22 0" fill="#08794d"/>
+            <circle cx="338" cy="210" r="19" fill="#e2ffd6"/>
+            <path d="M329 210h18" stroke="#0b8651" stroke-width="5" stroke-linecap="round"/>
+          </g>
+        </svg>
+      </div>
+    </section>
   </div>
 </header>
 
-<section class="hero">
-  <div class="hero-conteudo">
-
-    <span class="hero-etiqueta">🛍️ SEU NOVO JEITO DE COMPRAR</span>
-
-    <h1>
-      O que você procura <span>hoje?</span>
-    </h1>
-
-    <p>
-      Descubra lojas, conheça produtos e faça seus pedidos
-      com praticidade. Tudo em um só lugar.
-    </p>
-
-    <div class="busca">
-      <input
-        type="search"
-        id="pesquisa"
-        placeholder="Buscar loja ou produto..."
-        aria-label="Buscar loja ou produto"
-      >
-
-      <button type="button" onclick="filtrarLojas()">
-        Buscar
-      </button>
-    </div>
-
-  </div>
-</section>
-
 <main>
-
-  <section>
-    <div class="secao-topo">
+  <section id="brands">
+    <div class="section-head">
       <div>
-        <h2>Explore as lojas</h2>
-        <p>Escolha uma loja e comece seu pedido.</p>
+        <div class="eyebrow">ESCOLHA ONDE COMPRAR</div>
+        <h2 class="section-title">Lojas disponíveis</h2>
+        <p class="intro">Encontre sua loja e faça seu pedido.</p>
       </div>
-
-      <div class="disponivel">● Lojas disponíveis</div>
+      <span class="available">● 2 lojas disponíveis</span>
     </div>
 
-    <div class="categorias">
-      <button class="categoria ativa"
-        onclick="filtrarCategoria('todas', this)">
-        Todas
-      </button>
-
-      <button class="categoria"
-        onclick="filtrarCategoria('terere', this)">
-        🌿 Tereré
-      </button>
-
-      <button class="categoria"
-        onclick="filtrarCategoria('bebidas', this)">
-        🧊 Bebidas
-      </button>
-    </div>
-
-    <div class="lojas" id="listaLojas">
-
-      <!-- LOJA ERVA VERDE -->
-
-      <article class="loja"
-        data-nome="erva verde terere nova nazare"
-        data-categoria="terere bebidas">
-
-        <div class="capa capa-erva">
-          <span class="capa-texto">SABORES E FRESCOR</span>
-        </div>
-
-        <div class="conteudo-loja">
-
-          <span class="etiqueta">TERERÉ</span>
-
-          <h3>Erva Verde</h3>
-
-          <p>
-            Escolha seus sabores favoritos e faça
-            seu pedido com facilidade.
-          </p>
-
-          <div class="cidade">
-            📍 Nova Nazaré - MT
+    <div class="brand-grid">
+      <article class="brand-card mundo" data-search="erva verde mundo terere fernanda nova nazare">
+        <div class="brand-logo">
+          <div class="erva-mark">
+            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M39 7C20 7 9 15 9 28c0 7 5 12 12 12C34 40 40 25 39 7Z" fill="#16834d"/>
+              <path d="M9 40c8-12 15-18 26-27" fill="none" stroke="#a8e87c" stroke-width="3" stroke-linecap="round"/>
+              <path d="M20 29c-1-5-5-8-10-9M27 22c4 0 7 2 9 5" fill="none" stroke="#d9f7e4" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <span>Erva Verde</span>
           </div>
-
-          <a class="entrar" href="./erva%20-verde/index.html">
-            Entrar na loja →
-          </a>
-
+          <span class="banner-label">SABOR E REFRESCÂNCIA</span>
+        </div>
+        <div class="brand-content">
+          <span class="pill">🌿 TERERÉ</span>
+          <h2>Erva Verde</h2>
+          <p>Seu tereré favorito, com sabores especiais para refrescar seu dia.</p>
+          <div class="store-meta">📍 Nova Nazaré – MT</div>
+          <button class="primary" onclick="openCatalog('mundo')">Acessar loja <span>→</span></button>
         </div>
       </article>
 
-      <!-- LOJA TORRES TERERÉ -->
-
-      <article class="loja"
-        data-nome="torres terere novo sao joaquim"
-        data-categoria="terere bebidas">
-
-        <div class="capa capa-torres">
-          <span class="capa-texto">QUALIDADE EM CADA SABOR</span>
+      <article class="brand-card torres" data-search="torres terere geovanna novo sao joaquim">
+        <div class="brand-logo">
+          <img src="assets/logo-torres-terere.jpeg" alt="Logo Torres Tereré">
+          <span class="banner-label">QUALIDADE EM CADA SABOR</span>
         </div>
-
-        <div class="conteudo-loja">
-
-          <span class="etiqueta">TERERÉ</span>
-
-          <h3>Torres Tereré</h3>
-
-          <p>
-            Sabores especiais, quantidades variadas
-            e pedidos pelo WhatsApp.
-          </p>
-
-          <div class="cidade">
-            📍 Novo São Joaquim - MT
-          </div>
-
-          <a class="entrar" href="./torres-terere/index.html">
-            Entrar na loja →
-          </a>
-
+        <div class="brand-content">
+          <span class="pill">🌿 TERERÉ</span>
+          <h2>Torres Tereré</h2>
+          <p>Escolha seus sabores favoritos e peça com praticidade.</p>
+          <div class="store-meta">📍 Novo São Joaquim – MT</div>
+          <button class="primary" onclick="openCatalog('torres')">Acessar loja <span>→</span></button>
         </div>
       </article>
-
     </div>
 
-    <div class="sem-resultado" id="semResultado">
-      Nenhuma loja encontrada. Tente outro nome.
-    </div>
-
+    <p id="noBrand" class="note" style="display:none;text-align:center">Não encontramos essa loja. Tente outro nome.</p>
   </section>
 
-  <!-- COMO FUNCIONA -->
-
-  <section class="como-funciona">
-
+  <section class="how">
     <h2>Comprar pelo Pede Aí é simples</h2>
-
-    <div class="passos">
-
-      <div class="passo">
-        <div class="passo-icone">🏪</div>
-        <h3>1. Escolha uma loja</h3>
-        <p>
-          Conheça as lojas disponíveis na plataforma.
-        </p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-icon">🏪</div>
+        <div><b>Escolha sua loja</b><small>Conheça as opções disponíveis.</small></div>
       </div>
-
-      <div class="passo">
-        <div class="passo-icone">🛍️</div>
-        <h3>2. Escolha seus produtos</h3>
-        <p>
-          Confira sabores, quantidades e preços.
-        </p>
+      <div class="step">
+        <div class="step-icon">🛍️</div>
+        <div><b>Monte seu pedido</b><small>Confira sabores, tamanhos e valores.</small></div>
       </div>
-
-      <div class="passo">
-        <div class="passo-icone">📲</div>
-        <h3>3. Faça seu pedido</h3>
-        <p>
-          Finalize seu pedido diretamente com a loja.
-        </p>
+      <div class="step">
+        <div class="step-icon">📲</div>
+        <div><b>Peça pelo WhatsApp</b><small>Fale diretamente com a atendente.</small></div>
       </div>
-
     </div>
   </section>
 
+  <section class="catalog" id="catalog">
+    <div class="catalog-head">
+      <div>
+        <h2 id="catalogTitle">Catálogo</h2>
+        <div id="catalogSubtitle" class="note"></div>
+      </div>
+      <button class="back" onclick="backToBrands()">← Voltar às lojas</button>
+    </div>
+
+    <div class="catalog-tools">
+      <div class="search-wrap">
+        <input id="productSearch" type="search" placeholder="Buscar sabor..." oninput="filterProducts()" aria-label="Buscar sabores">
+        <button type="button" onclick="filterProducts()">Buscar</button>
+      </div>
+      <button class="cart-shortcut" onclick="goToCart()">🛒 Sacola (<span id="cartCount">0</span>)</button>
+    </div>
+
+    <div class="products" id="products"></div>
+  </section>
+
+  <section class="order" id="order">
+    <h2>🛒 Seu pedido</h2>
+    <ul class="cart-list" id="cartList">
+      <li>Seu carrinho está vazio.</li>
+    </ul>
+    <div class="total" id="total">Total: R$ 0,00</div>
+
+    <div class="form-grid">
+      <div>
+        <label for="customer">Nome completo</label>
+        <input id="customer" placeholder="Digite seu nome">
+      </div>
+      <div>
+        <label for="city">Cidade</label>
+        <select id="city">
+          <option value="">Selecione sua cidade</option>
+          <option>Nova Nazaré - MT</option>
+          <option>Novo São Joaquim - MT</option>
+        </select>
+      </div>
+      <div>
+        <label for="delivery">Como deseja receber?</label>
+        <select id="delivery">
+          <option>Entrega</option>
+          <option>Retirada</option>
+        </select>
+      </div>
+      <div>
+        <label for="address">Bairro e endereço</label>
+        <input id="address" placeholder="Rua, número e bairro">
+      </div>
+      <div>
+        <label for="payment">Forma de pagamento</label>
+        <select id="payment">
+          <option>Pix</option>
+          <option>Dinheiro</option>
+          <option>Combinar com a atendente</option>
+        </select>
+      </div>
+      <div>
+        <label for="change">Precisa de troco?</label>
+        <input id="change" placeholder="Ex.: troco para R$ 100 (opcional)">
+      </div>
+      <div style="grid-column:1/-1">
+        <label for="observations">Observações</label>
+        <textarea id="observations" placeholder="Alguma informação para a atendente?"></textarea>
+      </div>
+    </div>
+
+    <button class="send" onclick="sendOrder()">📲 Enviar pedido pelo WhatsApp</button>
+    <p class="note">O pedido será enviado para a atendente da cidade selecionada. Entrega, frete e pagamento serão confirmados diretamente com a loja.</p>
+  </section>
 </main>
 
 <footer>
   <strong>Pede Aí.</strong>
-  <p>Seu comércio, mais perto.</p>
-  <p>Conectando clientes e comerciantes.</p>
-  <p>© 2026 Pede Aí. Todos os direitos reservados.</p>
+  Seu comércio, mais perto.<br>
+  Conectando clientes e comerciantes.
 </footer>
 
 <script>
-let categoriaAtual = "todas";
+function filterBrands(){
+  const q=document.getElementById('storeSearch').value.trim().toLocaleLowerCase('pt-BR');
+  let n=0;
+  document.querySelectorAll('.brand-card').forEach(c=>{
+    const ok=c.dataset.search.toLocaleLowerCase('pt-BR').includes(q);
+    c.style.display=ok?'':'none';
+    if(ok)n++;
+  });
+  document.getElementById('noBrand').style.display=n?'none':'block';
+}
+document.getElementById('storeSearch').addEventListener('input',filterBrands);
 
-function normalizar(texto) {
-  return texto
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "");
+const catalogues = {
+  mundo: {
+    name:"Mundo Tereré",
+    subtitle:"Atendimento: Fernanda • Nova Nazaré",
+    products:[
+      {name:"Menta Uva",emoji:"🍇🌿",description:"Refrescância com toque de uva"},
+      {name:"Menta Cereja",emoji:"🍒🌿",description:"Sabor frutado e refrescante"},
+      {name:"Menta Fogo",emoji:"🔥🌿",description:"Um toque intenso e marcante"},
+      {name:"Pura Folha",emoji:"🍃",description:"Sabor tradicional da erva"}
+    ],
+    prices:{"250g":12.50,"500g":25,"1kg":50}
+  },
+  torres: {
+    name:"Torres Tereré",
+    subtitle:"Atendimento: Geovanna • Novo São Joaquim",
+    products:[
+      {name:"Menta Uva",emoji:"🍇🌿",description:"Sabor frutado e refrescante"},
+      {name:"Menta Cereja",emoji:"🍒🌿",description:"Sabor frutado e refrescante"},
+      {name:"Menta Fogo",emoji:"🔥🌿",description:"Um toque intenso e marcante"},
+      {name:"Pura Folha",emoji:"🍃",description:"Sabor tradicional da erva"}
+    ],
+    prices:null
+  }
+};
+
+const attendants = {
+  mundo:{name:"Fernanda",city:"Nova Nazaré - MT",phone:"5566992260204"},
+  torres:{name:"Geovanna",city:"Novo São Joaquim - MT",phone:"5566981007105"}
+};
+
+let currentBrand="mundo";
+let cart=[];
+
+function money(v){
+  return v.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
 }
 
-function filtrarLojas() {
-  const pesquisa = normalizar(
-    document.getElementById("pesquisa").value.trim()
+function openCatalog(brand){
+  currentBrand=brand;
+  cart=[];
+  const data=catalogues[brand];
+
+  document.getElementById("brands").style.display="none";
+  document.getElementById("catalog").classList.add("active");
+  document.getElementById("order").classList.add("active");
+  document.body.classList.toggle("torres-mode",brand==="torres");
+
+  document.getElementById("catalogTitle").textContent=data.name+" — sabores disponíveis";
+  document.getElementById("catalogSubtitle").textContent=data.subtitle;
+  document.getElementById("city").value=attendants[brand].city;
+  document.getElementById("productSearch").value="";
+
+  document.getElementById("products").innerHTML=data.products.map((p,i)=>`
+    <article class="product">
+      <div class="fruit">${p.emoji}</div>
+      <h3>${p.name}</h3>
+      <p>${p.description}</p>
+      <select id="size-${i}" aria-label="Escolha o peso de ${p.name}">
+        <option value="250g">250 g</option>
+        <option value="500g">500 g</option>
+        <option value="1kg">1 kg</option>
+      </select>
+      <button class="add" onclick="addToCart(${i})">Adicionar ao carrinho</button>
+    </article>
+  `).join("");
+
+  renderCart();
+  window.scrollTo({top:document.getElementById("catalog").offsetTop-15,behavior:"smooth"});
+}
+
+function filterProducts(){
+  const term=document.getElementById("productSearch").value.trim().toLocaleLowerCase("pt-BR");
+  document.querySelectorAll("#products .product").forEach(card=>{
+    card.style.display=card.innerText.toLocaleLowerCase("pt-BR").includes(term)?"":"none";
+  });
+}
+
+function goToCart(){
+  document.getElementById("order").scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+function addToCart(index){
+  const product=catalogues[currentBrand].products[index];
+  const size=document.getElementById("size-"+index).value;
+  const price=catalogues[currentBrand].prices?catalogues[currentBrand].prices[size]:null;
+
+  cart.push({name:product.name,emoji:product.emoji,size,price});
+  renderCart();
+}
+
+function renderCart(){
+  const list=document.getElementById("cartList");
+
+  if(!cart.length){
+    list.innerHTML="<li>Seu carrinho está vazio.</li>";
+  }else{
+    list.innerHTML=cart.map((item,i)=>`
+      <li>
+        ${item.emoji} ${item.name} — ${item.size}
+        ${item.price===null?"(valor a confirmar)":" — "+money(item.price)}
+        <button aria-label="Remover item" onclick="removeItem(${i})">✕</button>
+      </li>
+    `).join("");
+  }
+
+  const knownTotal=cart.every(x=>x.price!==null)
+    ?cart.reduce((sum,x)=>sum+x.price,0)
+    :null;
+
+  document.getElementById("total").textContent=
+    knownTotal===null?"Total: confirmar com a atendente":"Total: "+money(knownTotal);
+
+  document.getElementById("cartCount").textContent=cart.length;
+}
+
+function removeItem(index){
+  cart.splice(index,1);
+  renderCart();
+}
+
+function backToBrands(){
+  document.getElementById("brands").style.display="grid";
+  document.getElementById("catalog").classList.remove("active");
+  document.getElementById("order").classList.remove("active");
+  document.body.classList.remove("torres-mode");
+  cart=[];
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function sendOrder(){
+  if(!cart.length){
+    alert("Adicione pelo menos um produto ao carrinho.");
+    return;
+  }
+
+  const customer=document.getElementById("customer").value.trim();
+
+  if(!customer){
+    alert("Informe seu nome.");
+    return;
+  }
+
+  const attendant=attendants[currentBrand];
+  const city=attendant.city;
+
+  const total=cart.every(x=>x.price!==null)
+    ?money(cart.reduce((s,x)=>s+x.price,0))
+    :"A confirmar";
+
+  const lines=cart.map(x=>
+    `• ${x.emoji} ${x.name} — ${x.size}${x.price===null?"":" — "+money(x.price)}`
+  ).join("\n");
+
+  const message=
+`Olá, ${attendant.name}! Quero fazer um pedido da ${catalogues[currentBrand].name}.
+
+Cliente: ${customer}
+Cidade: ${city}
+
+Pedido:
+${lines}
+
+Total: ${total}
+Recebimento: ${document.getElementById("delivery").value}
+Endereço: ${document.getElementById("address").value||"A combinar"}
+Pagamento: ${document.getElementById("payment").value}
+Troco: ${document.getElementById("change").value||"Não informado"}
+Observações: ${document.getElementById("observations").value||"Nenhuma"}
+
+Aguardo a confirmação.`;
+
+  window.open(
+    `https://wa.me/${attendant.phone}?text=${encodeURIComponent(message)}`,
+    "_blank"
   );
-
-  const lojas = document.querySelectorAll(".loja");
-  let encontrados = 0;
-
-  lojas.forEach(loja => {
-    const nome = normalizar(loja.dataset.nome);
-    const categorias = loja.dataset.categoria.split(" ");
-
-    const combinaPesquisa = nome.includes(pesquisa);
-
-    const combinaCategoria =
-      categoriaAtual === "todas" ||
-      categorias.includes(categoriaAtual);
-
-    const mostrar = combinaPesquisa && combinaCategoria;
-
-    loja.style.display = mostrar ? "" : "none";
-
-    if (mostrar) encontrados++;
-  });
-
-  document.getElementById("semResultado").style.display =
-    encontrados === 0 ? "block" : "none";
 }
-
-function filtrarCategoria(categoria, botao) {
-  categoriaAtual = categoria;
-
-  document.querySelectorAll(".categoria").forEach(item => {
-    item.classList.remove("ativa");
-  });
-
-  botao.classList.add("ativa");
-
-  filtrarLojas();
-}
-
-document.getElementById("pesquisa").addEventListener("input", filtrarLojas);
 </script>
-
 </body>
 </html>
+
 
