@@ -759,11 +759,11 @@ function openCatalog(brand){
       <div class="fruit">${p.emoji}</div>
       <h3>${p.name}</h3>
       <p>${p.description}</p>
-      <select id="size-${i}" aria-label="Escolha o peso de ${p.name}">
-        <option value="250g">250 g</option>
-        <option value="500g">500 g</option>
-        <option value="1kg">1 kg</option>
-      </select>
+  <select id="size-${i}" aria-label="Escolha o peso de ${p.name}">
+  <option value="250g">250 g — ${money(data.prices["250g"])}</option>
+  <option value="500g">500 g — ${money(data.prices["500g"])}</option>
+  <option value="1kg">1 kg — ${money(data.prices["1kg"])}</option>
+</select>
       <button class="add" onclick="addToCart(${i})">Adicionar ao carrinho</button>
     </article>
   `).join("");
