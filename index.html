@@ -483,6 +483,69 @@ footer strong{display:block;font-size:22px;color:white}
   .cart-shortcut{width:100%}
   .search-wrap button{padding:0 12px}
 }
+
+/* FUNDO DO TA NA MAO */
+body {
+  background: linear-gradient(135deg, #031d16, #06432d, #021b13);
+  color: #fff;
+  position: relative;
+  isolation: isolate;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: .75;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Cpath d='M20 150C20 65 75 15 160 20C155 105 100 160 20 150Z' fill='%2386e6a1' fill-opacity='.16'/%3E%3Cpath d='M25 150L155 25' stroke='%23c9ffd5' stroke-opacity='.22' stroke-width='3' fill='none'/%3E%3C/svg%3E");
+  background-size: 260px 260px;
+}
+
+main {
+  background: transparent;
+}
+
+.brand-card.mundo,
+.brand-card.torres {
+  background: linear-gradient(145deg, #0b422e, #06291e);
+  border: 1px solid #238b50;
+  color: #fff;
+}
+
+.brand-content h2 {
+  color: #b7f58b;
+}
+
+.brand-content p,
+.store-meta {
+  color: #d9eee0;
+}
+
+.torres .brand-content h2 {
+  color: #f2d16b;
+}
+
+.how {
+  background: linear-gradient(145deg, #0b422e, #05291e);
+  border-color: #238b50;
+  color: #fff;
+}
+
+.how h2,
+.step b {
+  color: #fff;
+}
+
+.step small {
+  color: #d9eee0;
+}
+
+footer {
+  background: #031d16;
+}
+
 </style>
 </head>
 
