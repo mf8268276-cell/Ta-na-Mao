@@ -47,9 +47,18 @@ button{cursor:pointer}
   top:-220px;
   box-shadow:0 0 0 28px #b9ffd30b,0 0 0 60px #b9ffd308,0 0 0 95px #b9ffd306
 }
-  filter:blur(30px)
-}
-
+.topbar:after{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  left:-70px;
+  bottom:-155px;
+  width:320px;
+  height:230px;
+  border-radius:50%;
+  background:#3de88b20;
+  filter:blur(30px);
+  }
 /* MASCOTE */
 .mascote{
   position:absolute;
@@ -59,7 +68,6 @@ button{cursor:pointer}
   top:20px;
   z-index:2;
 }
-
 .top-inner{max-width:1120px;margin:auto}
 .nav{display:flex;justify-content:space-between;align-items:center;gap:14px}
 .topbar:after{
