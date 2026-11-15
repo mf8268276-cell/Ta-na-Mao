@@ -851,6 +851,156 @@ footer strong {
   display: block;
   margin: 10px auto;
 }
+/* NOVO VISUAL DAS LOJAS - TA NA MAO */
+
+body {
+  background: #fffdf5;
+  color: #163c2c;
+}
+
+.brand-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.brand-card,
+.brand-card.mundo,
+.brand-card.torres {
+  display: grid;
+  grid-template-columns: 145px minmax(0, 1fr);
+  align-items: stretch;
+  background: #ffffff;
+  color: #163c2c;
+  border: 1px solid #e4eadf;
+  border-radius: 25px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px #123d3012;
+}
+
+.brand-logo,
+.torres .brand-logo {
+  min-height: 190px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  background: #f0faef;
+}
+
+.brand-logo:after {
+  display: none;
+}
+
+.brand-logo img,
+.erva-mark {
+  position: static;
+  width: 112px;
+  height: 112px;
+  border-radius: 50%;
+  object-fit: contain;
+  border: 0;
+  box-shadow: none;
+  background: transparent;
+}
+
+.torres .brand-logo {
+  background: #f5f3e8;
+}
+
+.torres .brand-logo img {
+  border: 0;
+}
+
+.banner-label {
+  display: none;
+}
+
+.brand-content {
+  padding: 20px 18px;
+}
+
+.brand-content h2,
+.torres .brand-content h2 {
+  color: #075b37;
+  font-size: 22px;
+  margin: 10px 0 7px;
+}
+
+.brand-content p,
+.torres .brand-content p {
+  color: #607468;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.store-meta,
+.torres .store-meta {
+  color: #52685c;
+  font-size: 12px;
+}
+
+.torres .pill {
+  background: #fff4c9;
+  color: #765600;
+  border: 0;
+}
+
+.primary,
+.torres .primary {
+  width: 100%;
+  border: 0;
+  border-radius: 30px;
+  padding: 14px;
+  color: white;
+  background: linear-gradient(100deg, #087b3e, #19b83d);
+  box-shadow: 0 6px 15px #087b3d25;
+  font-size: 14px;
+}
+
+/* AJUSTE PARA CELULAR */
+@media(max-width:680px) {
+  .brand-card,
+  .brand-card.mundo,
+  .brand-card.torres {
+    grid-template-columns: 105px minmax(0, 1fr);
+    border-radius: 20px;
+  }
+
+  .brand-logo,
+  .torres .brand-logo {
+    min-height: 175px;
+    padding: 8px;
+  }
+
+  .brand-logo img,
+  .erva-mark {
+    width: 88px;
+    height: 88px;
+  }
+
+  .brand-content {
+    padding: 15px 12px;
+  }
+
+  .brand-content h2,
+  .torres .brand-content h2 {
+    font-size: 18px;
+  }
+
+  .brand-content p,
+  .torres .brand-content p {
+    font-size: 12px;
+  }
+
+  .primary,
+  .torres .primary {
+    font-size: 12px;
+    padding: 12px 8px;
+  }
+}
+
 </style>
 </head>
 <body>
