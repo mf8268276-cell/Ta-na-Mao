@@ -1338,16 +1338,27 @@ function openCatalog(brand){
   document.getElementById("city").value=attendants[brand].city;
   document.getElementById("productSearch").value="";
 
-  document.getElementById("products").innerHTML=data.products.map((p,i)=>`
+  document.getElementById("products").innerHTML =
+  data.products.length === 0
+  ? `
+    <div class="empty-products">
+      <img
+        src="./D2B1669E-088A-4E8C-A600-ACAE13E0717C.png"
+        alt="Ainda não há produtos aqui"
+        class="empty-products-mascot"
+      >
+    </div>
+  `
+  : data.products.map((p,i)=>`
     <article class="product">
       <div class="fruit">${p.emoji}</div>
       <h3>${p.name}</h3>
       <p>${p.description}</p>
-  <select id="size-${i}" aria-label="Escolha o peso de ${p.name}">
-  <option value="250g">250 g — ${money(data.prices["250g"])}</option>
-  <option value="500g">500 g — ${money(data.prices["500g"])}</option>
-  <option value="1kg">1 kg — ${money(data.prices["1kg"])}</option>
-</select>
+      <select id="size-${i}" aria-label="Escolha o peso de ${p.name}">
+        <option value="250g">250 g — ${money(data.prices["250g"])}</option>
+        <option value="500g">500 g — ${money(data.prices["500g"])}</option>
+        <option value="1kg">1 kg — ${money(data.prices["1kg"])}</option>
+      </select>
       <button class="add" onclick="addToCart(${i})">Adicionar ao carrinho</button>
     </article>
   `).join("");
