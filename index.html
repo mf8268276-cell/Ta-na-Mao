@@ -1024,7 +1024,37 @@ body {
   position: relative;
   z-index: 1;
 }
+/* PATINHAS GRANDES NO BANNER */
+.welcome {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
 
+.welcome::before {
+  content: "🐾";
+  position: absolute;
+  top: 15px;
+  right: 10px;
+  font-size: 170px;
+  opacity: 0.13;
+  filter: grayscale(1) brightness(0) invert(1);
+  transform: rotate(-20deg);
+  pointer-events: none;
+  z-index: -1;
+}
+.welcome::after {
+  content: "🐾";
+  position: absolute;
+  bottom: 15px;
+  left: 5px;
+  font-size: 150px;
+  opacity: 0.12;
+  filter: grayscale(1) brightness(0) invert(1);
+  transform: rotate(20deg);
+  pointer-events: none;
+  z-index: -1;
+}
 </style>
 </head>
 <body>
