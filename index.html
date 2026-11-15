@@ -1000,6 +1000,30 @@ body {
     padding: 12px 8px;
   }
 }
+/* PATINHAS DECORATIVAS */
+.brand-card,
+.brand-card.mundo,
+.brand-card.torres {
+  position: relative;
+  overflow: hidden;
+}
+
+.brand-card::after,
+.brand-card.mundo::after,
+.brand-card.torres::after {
+  content: "🐾";
+  position: absolute;
+  right: 12px;
+  top: 8px;
+  font-size: 25px;
+  opacity: 0.13;
+  pointer-events: none;
+}
+
+.brand-content {
+  position: relative;
+  z-index: 1;
+}
 
 </style>
 </head>
