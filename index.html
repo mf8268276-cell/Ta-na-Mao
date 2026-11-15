@@ -1152,7 +1152,16 @@ function renderCart(){
   const list=document.getElementById("cartList");
 
   if(!cart.length){
-    list.innerHTML="<li>Seu carrinho está vazio.</li>";
+    list.innerHTML = `
+      <li class="cart-empty">
+        <img
+          src="./473b896b-2cda-4791-b6b5-ecbeb3ced4c2.jpeg"
+          alt="Carrinho vazio"
+          class="cart-empty-mascot"
+        >
+        <p>Seu carrinho está vazio.</p>
+      </li>
+    `;
   }else{
     list.innerHTML=cart.map((item,i)=>`
       <li>
