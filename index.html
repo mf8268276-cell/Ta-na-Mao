@@ -1024,7 +1024,7 @@ body {
   position: relative;
   z-index: 1;
 }
-/* PATINHAS GRANDES NO BANNER */
+/* PATINHAS ORGANIZADAS NO BANNER */
 .welcome {
   position: relative;
   overflow: hidden;
@@ -1033,26 +1033,32 @@ body {
 .welcome::before {
   content: "🐾";
   position: absolute;
-  top: 15px;
-  right: 10px;
-  font-size: 170px;
-  opacity: 0.13;
+  top: 25px;
+  right: 18px;
+  font-size: 115px;
+  opacity: 0.10;
   filter: grayscale(1) brightness(0) invert(1);
-  transform: rotate(-20deg);
+  transform: rotate(-18deg);
   pointer-events: none;
-  z-index: -1;
+  z-index: 0;
 }
 .welcome::after {
   content: "🐾";
   position: absolute;
-  bottom: 15px;
-  left: 5px;
-  font-size: 150px;
-  opacity: 0.12;
+  bottom: 25px;
+  left: 15px;
+  font-size: 105px;
+  opacity: 0.10;
   filter: grayscale(1) brightness(0) invert(1);
-  transform: rotate(20deg);
+  transform: rotate(18deg);
   pointer-events: none;
-  z-index: -1;
+  z-index: 0;
+}
+
+.welcome-copy,
+.hero-art {
+  position: relative;
+  z-index: 1;
 }
 </style>
 </head>
