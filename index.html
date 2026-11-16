@@ -1237,6 +1237,30 @@ body {
   }
 }
 
+/* MASCOTE DO RODAPÉ - GESTO DE APROVAÇÃO */
+.footer-mascot img {
+  animation: legal 2s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+
+@keyframes legal {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+
+  25% {
+    transform: rotate(-4deg);
+  }
+
+  50% {
+    transform: rotate(4deg);
+  }
+
+  75% {
+    transform: rotate(-2deg);
+  }
+}
+
 </style>
 </head>
 <body>
