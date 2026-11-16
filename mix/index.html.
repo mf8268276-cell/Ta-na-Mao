@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beiju Mix | Loja de Cosméticos</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #fff9f8;
+  color: #45343a;
+}
+
+header {
+  background: #f5dce3;
+  padding: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.logo {
+  font-family: Georgia, serif;
+  font-size: 30px;
+  color: #b34469;
+  font-weight: bold;
+}
+
+nav a {
+  text-decoration: none;
+  color: #663c4b;
+  margin: 8px;
+  font-weight: bold;
+}
+
+.banner {
+  min-height: 430px;
+  background:
+    linear-gradient(90deg, rgba(50,20,35,.72), rgba(50,20,35,.10)),
+    url("https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=1600")
+    center/cover;
+  display: flex;
+  align-items: center;
+  padding: 50px;
+  color: white;
+}
+
+.banner h1 {
+  font-family: Georgia, serif;
+  font-size: 55px;
+  margin-bottom: 18px;
+}
+
+.banner p {
+  font-size: 18px;
+  line-height: 1.6;
+  max-width: 450px;
+}
+
+.botao {
+  display: inline-block;
+  background: #c85e80;
+  color: white;
+  padding: 14px 25px;
+  border-radius: 30px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+section {
+  padding: 55px 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.titulo {
+  text-align: center;
+  font-family: Georgia, serif;
+  color: #b34469;
+  font-size: 34px;
+  margin-bottom: 35px;
+}
+
+.categorias {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+}
+
+.categoria {
+  background: #f5dce3;
+  padding: 25px 10px;
+  border-radius: 15px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 17px;
+}
+
+.categoria span {
+  display: block;
+  font-size: 35px;
+  margin-bottom: 10px;
+}
+
+.produtos {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.produto {
+  background: white;
+  border-radius: 15px;
+  padding: 12px;
+  box-shadow: 0 5px 18px #00000012;
+  text-align: center;
+}
+
+.produto img {
+  width: 100%;
+  height: 210px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.produto h3 {
+  margin: 14px 0 8px;
+}
+
+.preco {
+  color: #b34469;
+  font-weight: bold;
+  font-size: 20px;
+  margin: 12px;
+}
+
+.carrinho {
+  background: #f8e9ed;
+  padding: 25px;
+  border-radius: 15px;
+  margin-top: 30px;
+}
+
+footer {
+  background: #472d38;
+  color: white;
+  padding: 35px 20px;
+  text-align: center;
+  line-height: 2;
+}
+
+footer h2 {
+  color: #f4c4d2;
+  font-family: Georgia, serif;
+}
+
+@media(max-width: 750px) {
+  .produtos {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .categorias {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .banner {
+    padding: 30px 20px;
+    min-height: 380px;
+  }
+
+  .banner h1 {
+    font-size: 40px;
+  }
+
+  nav {
+    margin-top: 12px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">BEIJU MIX</div>
+  <nav>
+    <a href="#inicio">Início</a>
+    <a href="#categorias">Categorias</a>
+    <a href="#produtos">Produtos</a>
+    <a href="#contato">Contato</a>
+  </nav>
+</header>
+
+<!-- BANNER PRINCIPAL -->
+<div class="banner" id="inicio">
+  <div>
+    <h1>Beiju Mix</h1>
+    <p>
+      Sua beleza, seu estilo, sua mistura!
+      Descubra produtos incríveis de maquiagem,
+      skincare e autocuidado.
+    </p>
+    <a href="#produtos" class="botao">COMPRAR AGORA</a>
+  </div>
+</div>
+
+<!-- CATEGORIAS -->
+<section id="categorias">
+  <h2 class="titulo">Nossas Categorias</h2>
+
+  <div class="categorias">
+    <div class="categoria">
+      <span>💄</span>
+      Maquiagem
+    </div>
+
+    <div class="categoria">
+      <span>🧴</span>
+      Skincare
+    </div>
+
+    <div class="categoria">
+      <span>🌸</span>
+      Perfumes
+    </div>
+
+    <div class="categoria">
+      <span>💅</span>
+      Acessórios
+    </div>
+  </div>
+</section>
+
+<!-- PRODUTOS -->
+<section id="produtos">
+  <h2 class="titulo">Nossos Produtos</h2>
+
+  <div class="produtos" id="listaProdutos"></div>
+
+  <div class="carrinho">
+    <h2>🛍️ Meu Carrinho</h2>
+    <div id="itensCarrinho">
+      Seu carrinho está vazio.
+    </div>
+    <h3 id="total">Total: R$ 0,00</h3>
+    <button class="botao" onclick="finalizarPedido()">
+      Finalizar pelo WhatsApp
+    </button>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<footer id="contato">
+  <h2>BEIJU MIX</h2>
+  <p>Sua beleza, seu estilo, sua mistura!</p>
+  <p>Maquiagem • Perfumes • Skincare • Acessórios</p>
+  <p>Instagram: @SEUINSTAGRAM</p>
+  <p>© 2026 Beiju Mix - Todos os direitos reservados.</p>
+</footer>
+
+<script>
+
+// CADASTRO DOS PRODUTOS
+const produtos = [
+  {
+    nome: "Kit Maquiagem",
+    preco: 49.90,
+    imagem: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=600"
+  },
+  {
+    nome: "Kit Skincare",
+    preco: 39.90,
+    imagem: "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=600"
+  },
+  {
+    nome: "Perfume Feminino",
+    preco: 59.90,
+    imagem: "https://images.unsplash.com/photo-1541643600914-78b084683601?w=600"
+  },
+  {
+    nome: "Acessórios de Beleza",
+    preco: 24.90,
+    imagem: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=600"
+  }
+];
+
+// WHATSAPP DA LOJA
+// Troque pelo número verdadeiro com DDI e DDD.
+const whatsapp = "5588999999999";
+
+let carrinho = [];
+
+function mostrarProdutos() {
+  const lista = document.getElementById("listaProdutos");
+
+  lista.innerHTML = produtos.map((produto, index) => `
+    <div class="produto">
+      <img src="${produto.imagem}" alt="${produto.nome}">
+      <h3>${produto.nome}</h3>
+      <div class="preco">
+        ${produto.preco.toLocaleString("pt-BR", {
+          style: "currency",
+          currency: "BRL"
+        })}
+      </div>
+      <button class="botao" onclick="adicionar(${index})">
+        Adicionar ao carrinho
+      </button>
+    </div>
+  `).join("");
+}
+
+function adicionar(index) {
+  carrinho.push(produtos[index]);
+  atualizarCarrinho();
+}
+
+function atualizarCarrinho() {
+  const itens = document.getElementById("itensCarrinho");
+  const total = document.getElementById("total");
+
+  if (carrinho.length === 0) {
+    itens.innerHTML = "Seu carrinho está vazio.";
+  } else {
+    itens.innerHTML = carrinho.map((produto, index) => `
+      <p>
+        ${produto.nome} -
+        ${produto.preco.toLocaleString("pt-BR", {
+          style: "currency",
+          currency: "BRL"
+        })}
+        <button onclick="remover(${index})">❌</button>
+      </p>
+    `).join("");
+  }
+
+  const valor = carrinho.reduce(
+    (soma, produto) => soma + produto.preco, 0
+  );
+
+  total.innerHTML = "Total: " + valor.toLocaleString(
+    "pt-BR",
+    { style: "currency", currency: "BRL" }
+  );
+}
+
+function remover(index) {
+  carrinho.splice(index, 1);
+  atualizarCarrinho();
+}
+
+function finalizarPedido() {
+  if (carrinho.length === 0) {
+    alert("Adicione produtos ao carrinho!");
+    return;
+  }
+
+  let mensagem = "Olá! Quero fazer um pedido na Beiju Mix:\n\n";
+
+  carrinho.forEach(produto => {
+    mensagem += produto.nome + " - R$ " +
+      produto.preco.toFixed(2).replace(".", ",") + "\n";
+  });
+
+  const total = carrinho.reduce(
+    (soma, produto) => soma + produto.preco, 0
+  );
+
+  mensagem += "\nTotal: R$ " + total.toFixed(2);
+
+  window.open(
+    "https://wa.me/" + whatsapp +
+    "?text=" + encodeURIComponent(mensagem),
+    "_blank"
+  );
+}
+
+mostrarProdutos();
+
+</script>
+
+</body>
+</html>
