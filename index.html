@@ -1485,25 +1485,34 @@ function atualizarMascoteCarrinho() {
 function renderCart(){
   const list=document.getElementById("cartList");
 
-  if(!cart.length){
-    list.innerHTML = `
-      <li class="cart-empty">
-        <img
-          src="./E98C4AF4-A3CF-4309-A2E2-17014CBAD188.png"
-          alt="Carrinho vazio"
-          class="cart-empty-mascot"
-        >
-        <p>Seu carrinho está vazio.</p>
-      </li>
-    `;
-  }else{
-    list.innerHTML=cart.map((item,i)=>`
+  if (!cart.length) {
+  list.innerHTML = `
+    <li class="cart-empty">
+      <img
+        src="./E98C4AF4-A3CF-4309-A2E2-17014CBAD188.png"
+        alt="Carrinho vazio"
+        class="cart-empty-mascot"
+      >
+      <p>Seu carrinho está vazio.</p>
+    </li>
+  `;
+} else {
+  list.innerHTML = `
+    <li class="cart-full">
+      <img
+        src="./8DA81BCE-4E8C-45B1-966B-8241ECB795B1.png"
+        alt="Carrinho cheio"
+        class="cart-full-mascot"
+      >
+    </li>
+    ${cart.map((item, i) => `
       <li>
         ${item.emoji} ${item.name} — ${item.size}
-        ${item.price===null?"(valor a confirmar)":" — "+money(item.price)}
+        ${item.price === null ? "(valor a confirmar)" : " — " + money(item.price)}
         <button aria-label="Remover item" onclick="removeItem(${i})">✕</button>
       </li>
-    `).join("");
+    `).join("")}
+  `;
   }
 
   const knownTotal=cart.every(x=>x.price!==null)
