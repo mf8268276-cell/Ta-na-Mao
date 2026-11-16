@@ -1359,7 +1359,6 @@ body {
   margin-top: 15px;
   }
 }
-
 .hero-art {
   position: relative;
   display: flex;
@@ -1368,7 +1367,10 @@ body {
   gap: 12px;
   width: 100%;
   max-width: 600px;
-  margin: 30px auto;
+  min-height: 350px;
+  padding-top: 95px;
+  margin: 20px auto 0;
+  box-sizing: border-box;
 }
 
 .mascote-boas-vindas,
@@ -1379,18 +1381,16 @@ body {
   object-fit: contain;
 }
 
-
-
 .balao-boas-vindas {
   position: absolute;
-  top: -35px;
+  top: 0;
   left: 50%;
   transform: translateX(-50%);
   background: #ffffff;
   color: #087e42;
-  padding: 15px 25px;
+  padding: 13px 23px;
   border: 3px solid #07965b;
-  border-radius: 50%;
+  border-radius: 50px;
   font-size: 18px;
   font-weight: 800;
   white-space: nowrap;
@@ -1409,10 +1409,25 @@ body {
   border-right: 3px solid #07965b;
   border-bottom: 3px solid #07965b;
   transform: translateX(-50%) rotate(45deg);
-    }
+}
+
+@media (max-width: 480px) {
+  .hero-art {
+    min-height: 300px;
+    padding-top: 85px;
+    gap: 5px;
   }
 
+  .mascote-boas-vindas,
+  .mascote-beijinhos {
+    width: 47%;
+  }
 
+  .balao-boas-vindas {
+    font-size: 16px;
+    padding: 11px 17px;
+  }
+}
 </style>
 </head>
 <body>
