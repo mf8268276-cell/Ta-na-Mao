@@ -1182,6 +1182,43 @@ body {
     object-fit: contain;
     margin: 0 auto;
 }
+/* MASCOTE E NOME DA MARCA */
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-mascot {
+  width: 85px;
+  height: 85px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.brand-name {
+  color: #064326 !important;
+  font-size: 38px !important;
+  font-weight: 1000 !important;
+  letter-spacing: -1.5px;
+  opacity: 1 !important;
+}
+
+.brand-name strong {
+  color: #e5b900 !important;
+}
+
+@media (max-width: 480px) {
+  .brand-mascot {
+    width: 68px;
+    height: 68px;
+  }
+
+  .brand-name {
+    font-size: 29px !important;
+  }
+}
 </style>
 </head>
 <body>
