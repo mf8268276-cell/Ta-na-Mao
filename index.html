@@ -1220,6 +1220,23 @@ body {
     font-size: 29px !important;
   }
 }
+
+/* ANIMAÇÃO DO CACHORRINHO DE BOAS-VINDAS */
+
+.mascote-boas-vindas {
+  animation: boas-vindas 3s ease-in-out infinite;
+}
+
+@keyframes boas-vindas {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-10px) rotate(3deg);
+  }
+}
+
 </style>
 </head>
 <body>
