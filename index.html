@@ -1,4 +1,4 @@
-#
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -1379,32 +1379,37 @@ body {
   object-fit: contain;
 }
 
+
 .balao-boas-vindas {
   position: absolute;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
   background: #087e42;
-  color: white;
-  padding: 10px 18px;
-  border: 2px solid #b8f36a;
-  border-radius: 20px;
+  color: #ffffff;
+  padding: 12px 22px;
+  border: 3px solid #79d65b;
+  border-radius: 22px;
+  font-size: 20px;
   font-weight: bold;
-  z-index: 2;
   white-space: nowrap;
-  animation: entradaBalao 0.7s ease-out both;
+  z-index: 5;
+  box-shadow: 0 4px 12px #00000025;
 }
 
-@keyframes entradaBalao {
-  from {
-    opacity: 0;
-    transform: translate(-50%, 10px);
+.balao-boas-vindas::after {
+  content: "";
+  position: absolute;
+  bottom: -11px;
+  left: 50%;
+  width: 17px;
+  height: 17px;
+  background: #087e42;
+  border-right: 3px solid #79d65b;
+  border-bottom: 3px solid #79d65b;
+  transform: translateX(-50%) rotate(45deg);
+    }
   }
-  to {
-    opacity: 1;
-    transform: translate(-50%, 0);
-  }
-}
 
 </style>
 </head>
