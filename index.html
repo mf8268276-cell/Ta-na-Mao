@@ -534,34 +534,100 @@ body {
   color: var(--ink);
   font-family: 'DM Sans', Arial, sans-serif;
 }
-/* CABECALHO */
+
+/* CABECALHO MODERNO - TA NA MAO */
+
 .topbar {
   background: #fff;
-  color: var(--deep);
   padding: 15px 5%;
-  overflow: hidden;
+  border-bottom: 3px solid #079b32;
+  box-shadow: 0 4px 18px rgba(6,67,38,.08);
 }
+
+.top-inner {
+  max-width: 1200px;
+  margin: auto;
+}
+
 .nav {
-  min-height: 65px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 15px;
+  background: #fff;
+  border: 1px solid #e6f1e7;
+  border-radius: 22px;
 }
 
 .brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   color: #064326;
-  font-size: 34px;
+  font-size: 27px;
   font-weight: 900;
+  letter-spacing: -1px;
 }
 
-.brand span {
-  color: #e9bd00;
+.brand-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #eaffeb;
+  border-radius: 15px;
 }
 
+.brand-name strong {
+  color: #e5b900;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-icon,
 .cart-home {
-  background: transparent;
-  color: #064326;
-  border: 0;
-  box-shadow: none;
+  width: 48px;
+  height: 48px;
+  border: none;
+  border-radius: 15px;
+  background: #079b32;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 22px;
 }
 
+@media (max-width: 480px) {
+  .topbar {
+    padding: 10px 4%;
+  }
+
+  .nav {
+    padding: 9px;
+    border-radius: 18px;
+  }
+
+  .brand {
+    font-size: 22px;
+    gap: 7px;
+  }
+
+  .brand-icon svg {
+    width: 40px;
+    height: 40px;
+  }
+
+  .search-icon,
+  .cart-home {
+    width: 42px;
+    height: 42px;
+  }
 /* BANNER PRINCIPAL */
 .welcome {
   position: relative;
