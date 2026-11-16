@@ -43,14 +43,17 @@ nav a {
 }
 
 .banner {
-  min-height: 430px;
+  width: 100%;
+  min-height: 0;
+  height: auto;
+  aspect-ratio: 1536 / 1024;
   background:
-    linear-gradient(90deg, rgba(50,20,35,.15), rgba(50,20,35,.05)),
     url("./ABABD9FC-1229-4502-B77A-F71C63823931.webp")
-    center/cover no-repeat;
+    center center / 100% 100% no-repeat;
   display: flex;
   align-items: center;
-  padding: 50px;
+  padding: 20px;
+  box-sizing: border-box;
   color: white;
 }
 
