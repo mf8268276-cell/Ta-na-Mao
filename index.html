@@ -90,18 +90,39 @@ button{cursor:pointer}
   background:#3de88b20;
   filter:blur(30px);
 }
-/* MASCOTES DE BOAS-VINDAS */
+/* MASCOTES DO BANNER */
+.hero-art {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  max-width: 100%;
+  margin: 10px 0 0;
+  position: relative;
+  z-index: 5;
+}
 
-.mascote-boas-vindas {
-  width: 230px;
-  height: auto;
+.hero-art img {
+  width: 250px;
+  max-width: 100%;
+  height: 250px;
   object-fit: contain;
-  position: absolute;
-  right: 15px;
-  bottom: 10px;
+  display: block;
+}
+
+/* ANIMAÇÃO DE BOAS-VINDAS */
+.mascote-boas-vindas {
   animation: boas-vindas 3s ease-in-out infinite;
 }
 
+@keyframes boas-vindas {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(3deg);
+  }
+}
 @keyframes boas-vindas {
   0%, 100% {
     transform: translateY(0) rotate(0deg);
@@ -1260,30 +1281,8 @@ body {
   }
 
   .brand-name {
-    font-size: 29px !important;
-  }
-}
-
-/* ANIMAÇÃO DO CACHORRINHO DE BOAS-VINDAS */
-
-.mascote-boas-vindas {
-    animation: boas-vindas 3s ease-in-out infinite;
-
-}
-
-@keyframes boas-vindas {
-
-  0%, 100% {
-
-    transform: translateY(0) rotate(0deg);
-
-  }
-
-  50% {
-
-    transform: translateY(-10px) rotate(3deg);
-      } 
-    }
+    font-size: 29px !  
+    
 /* MASCOTE DO RODAPÉ - GESTO DE APROVAÇÃO */
 .footer-mascot img {
   animation: legal 2s ease-in-out infinite;
