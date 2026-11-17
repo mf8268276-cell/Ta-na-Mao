@@ -911,10 +911,12 @@ document.getElementById("formPedido").addEventListener("submit", function(e) {
 
   mensagem += "\nObrigada pela preferência! 💗";
 
-  const url = "https://wa.me/" + WHATSAPP_LOJA +
+  const WHATSAPP_LOJA = "5566992308775";
+
+const url = "https://wa.me/" + WHATSAPP_LOJA +
     "?text=" + encodeURIComponent(mensagem);
 
-  window.open(url, "_blank");
+window.open(url, "_blank");
 });
 
 // INICIALIZAÇÃO
