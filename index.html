@@ -96,24 +96,19 @@ button{cursor:pointer}
   justify-content: flex-end;
   align-items: center;
   width: 100%;
-  max-width: 100%;
-  margin: 10px 0 0;
   position: relative;
-  z-index: 5;
+  margin: 10px 0 0;
 }
 
-.hero-art img {
-  width: 360px;
-  max-width: 100%;
-  height: 360px;
+.mascote-boas-vindas {
+  width: 360px !important;
+  height: 360px !important;
+  max-width: none !important;
   object-fit: contain;
   display: block;
-}
-
-/* ANIMAÇÃO DE BOAS-VINDAS */
-.mascote-boas-vindas {
+  margin-left: auto;
   animation: boas-vindas 3s ease-in-out infinite;
-}
+  }
 
 @keyframes boas-vindas {
   0%, 100% {
