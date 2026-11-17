@@ -4,9 +4,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Biju Mix | Loja de Cosméticos</title>
+<title>Beiju Mix | Sua beleza começa aqui</title>
 
 <style>
+:root {
+  --vinho: #85002f;
+  --pink: #d41460;
+  --rosa: #f9dce8;
+  --claro: #fff7fa;
+  --dourado: #d6a844;
+  --texto: #482333;
+  --branco: #ffffff;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -15,198 +25,494 @@
 
 body {
   font-family: Arial, sans-serif;
-  background: #F8DCE7;
-  color: #850035;
+  background: var(--claro);
+  color: var(--texto);
+}
+
+button, input, select, textarea {
+  font: inherit;
 }
 
 header {
-  background: #850035;
-  padding: 18px;
+  background: white;
+  padding: 15px 5%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
+  box-shadow: 0 3px 15px #59002015;
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
+
 .logo {
   font-family: Georgia, serif;
-  font-size: 30px;
-  color: #FFFFFF;
+  font-size: 29px;
   font-weight: bold;
+  color: var(--vinho);
 }
+
+.logo span {
+  color: var(--dourado);
+  font-style: italic;
+}
+
+nav {
+  display: flex;
+  gap: 20px;
+}
+
 nav a {
   text-decoration: none;
-  color: #FFFFFF;
-  margin: 8px;
+  color: var(--vinho);
+  font-size: 14px;
   font-weight: bold;
 }
-.banner {
-  width: 100%;
-  min-height: 0;
-  height: auto;
-  aspect-ratio: 1536 / 1024;
-  background:
-    url("./ABABD9FC-1229-4502-B77A-F71C63823931.webp")
-    center center / 100% 100% no-repeat;
+
+.cart-top {
+  border: 0;
+  background: var(--vinho);
+  color: white;
+  padding: 12px 17px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.cart-top span {
+  background: var(--dourado);
+  color: var(--vinho);
+  padding: 3px 7px;
+  border-radius: 50%;
+}
+
+/* BANNER */
+
+.hero {
+  min-height: 480px;
+  padding: 65px 7%;
   display: flex;
   align-items: center;
-  padding: 20px;
-  box-sizing: border-box;
+  background:
+    radial-gradient(circle at 85% 30%, #f64c91, transparent 35%),
+    linear-gradient(120deg, #53001e, #a90048, #e11b67);
   color: white;
+  position: relative;
+  overflow: hidden;
 }
 
-.banner h1 {
-  font-family: Georgia, serif;
-  font-size: 55px;
-  margin-bottom: 18px;
+.hero-content {
+  max-width: 600px;
+  z-index: 1;
 }
 
-.banner p {
-  font-size: 18px;
-  line-height: 1.6;
-  max-width: 450px;
+.hero h1 {
+  font: bold clamp(55px, 9vw, 95px) Georgia, serif;
+  line-height: 1;
+  text-shadow: 2px 5px 10px #370016;
 }
-.botao {
+
+.hero h1 span {
+  color: #ffdb76;
+  font-style: italic;
+}
+
+.hero h2 {
+  font: italic 27px Georgia, serif;
+  margin: 25px 0 15px;
+}
+
+.hero p {
+  font-size: 16px;
+  line-height: 1.7;
+  margin-bottom: 27px;
+}
+
+.hero-btn {
   display: inline-block;
-  background: linear-gradient(90deg, #850035, #C2185B);
-  color: white;
-  padding: 14px 25px;
-  border-radius: 30px;
-  text-decoration: none;
-  border: 1px solid #D6A13A;
-  cursor: pointer;
-  margin-top: 20px;
+  background: linear-gradient(90deg, #f5c65c, #ffe9a5);
+  color: #670027;
+  padding: 17px 32px;
+  border-radius: 35px;
   font-weight: bold;
+  text-decoration: none;
+  box-shadow: 0 5px 20px #30001455;
 }
+
+.decoracao {
+  position: absolute;
+  right: 9%;
+  font-size: 160px;
+  opacity: .3;
+}
+
+/* BENEFÍCIOS */
+
+.beneficios {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 35px;
+  padding: 20px;
+  background: var(--vinho);
+  color: white;
+  text-align: center;
+  font-size: 14px;
+}
+
+/* CATEGORIAS */
 
 section {
-  padding: 55px 20px;
-  max-width: 1200px;
-  margin: auto;
+  padding: 60px 5%;
 }
 
 .titulo {
+  font: bold 38px Georgia, serif;
   text-align: center;
-  font-family: Georgia, serif;
-  color: #850035;
-  font-size: 34px;
+  color: var(--vinho);
+  margin-bottom: 12px;
+}
+
+.subtitulo {
+  text-align: center;
+  color: #936273;
   margin-bottom: 35px;
 }
-.categoria {
-  background: #FFFFFF;
-  color: #850035;
-  border: 1px solid #D6A13A;
-  padding: 25px 10px;
-  border-radius: 15px;
-  text-align: center;
-  font-weight: bold;
-  font-size: 17px;
+
+.categorias {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 17px;
+  max-width: 1050px;
+  margin: auto;
 }
 
-.categoria {
-  background: #f5dce3;
+.cat {
+  background: white;
+  border: 1px solid #e5bd75;
+  border-radius: 18px;
   padding: 25px 10px;
-  border-radius: 15px;
   text-align: center;
-  font-weight: bold;
-  font-size: 17px;
+  cursor: pointer;
+  color: var(--vinho);
+  transition: .3s;
 }
 
-.categoria span {
+.cat:hover, .cat.ativa {
+  background: var(--vinho);
+  color: white;
+  transform: translateY(-4px);
+}
+
+.cat .icone {
+  font-size: 39px;
   display: block;
-  font-size: 35px;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
+}
+
+/* PRODUTOS */
+
+.vitrine {
+  background: #fce8ef;
 }
 
 .produtos {
+  max-width: 1100px;
+  margin: auto;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
 }
 
 .produto {
   background: white;
-  border-radius: 15px;
-  padding: 12px;
-  box-shadow: 0 5px 18px #00000012;
-  text-align: center;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 5px 20px #65002b10;
+  border: 1px solid #f0d5df;
 }
 
-.produto img {
-  width: 100%;
-  height: 210px;
-  object-fit: cover;
-  border-radius: 12px;
+.foto-produto {
+  height: 175px;
+  background: linear-gradient(140deg, #fff0f5, #f4d3df);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 75px;
 }
 
-.produto h3 {
-  margin: 14px 0 8px;
+.info {
+  padding: 18px;
+}
+
+.info h3 {
+  color: var(--vinho);
+  margin-bottom: 9px;
+}
+
+.info p {
+  color: #986b7d;
+  font-size: 13px;
+  min-height: 32px;
 }
 
 .preco {
-  color: #C2185B;
+  color: var(--pink);
+  font-size: 21px;
   font-weight: bold;
-  font-size: 20px;
-  margin: 12px;
+  margin: 14px 0;
 }
 
-.carrinho {
-  background: #F5C9D9;
-  border: 1px solid #D6A13A;
-  color: #850035;
-  padding: 25px;
-  border-radius: 15px;
-  margin-top: 30px;
-}
-
-footer {
-  background: #650029;
+.adicionar {
+  width: 100%;
+  background: var(--vinho);
+  border: none;
   color: white;
-  padding: 35px 20px;
-  text-align: center;
-  line-height: 2;
+  padding: 13px;
+  border-radius: 25px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
-footer h2 {
-  color: #D6A13A;
+.adicionar:hover {
+  background: var(--pink);
+}
+
+/* CARRINHO */
+
+.fundo-carrinho {
+  position: fixed;
+  inset: 0;
+  background: #19000c88;
+  z-index: 20;
+  display: none;
+}
+
+.fundo-carrinho.aberto {
+  display: block;
+}
+
+.painel {
+  background: white;
+  width: min(460px, 100%);
+  height: 100%;
+  margin-left: auto;
+  overflow-y: auto;
+  padding: 23px;
+}
+
+.painel-topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 17px;
+  margin-bottom: 20px;
+}
+
+.painel-topo h2 {
+  color: var(--vinho);
   font-family: Georgia, serif;
 }
 
-@media(max-width: 750px) {
-  .produtos {
-    grid-template-columns: repeat(2, 1fr);
+.fechar {
+  background: #f9e2eb;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 15px 0;
+  border-bottom: 1px solid #f2dce5;
+}
+
+.item-info {
+  flex: 1;
+}
+
+.item-info strong {
+  color: var(--vinho);
+}
+
+.item-info small {
+  display: block;
+  margin-top: 6px;
+  color: #9c647b;
+}
+
+.quantidade {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.quantidade button {
+  background: var(--rosa);
+  border: none;
+  color: var(--vinho);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.remover {
+  color: #c0004b;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 12px;
+  margin-top: 8px;
+}
+
+.total {
+  display: flex;
+  justify-content: space-between;
+  padding: 22px 0;
+  font-size: 21px;
+  color: var(--vinho);
+  font-weight: bold;
+}
+
+.campo {
+  margin-bottom: 14px;
+}
+
+.campo label {
+  display: block;
+  font-weight: bold;
+  color: var(--vinho);
+  font-size: 13px;
+  margin-bottom: 7px;
+}
+
+.campo input,
+.campo select,
+.campo textarea {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #e6c4d1;
+  border-radius: 10px;
+  background: #fff9fb;
+  outline-color: var(--pink);
+}
+
+.campo textarea {
+  min-height: 75px;
+  resize: vertical;
+}
+
+.finalizar {
+  background: #168b4b;
+  color: white;
+  width: 100%;
+  padding: 16px;
+  border: none;
+  border-radius: 30px;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 10px 0 20px;
+}
+
+.vazio {
+  text-align: center;
+  padding: 35px 10px;
+  color: #a36a80;
+}
+
+footer {
+  background: #590020;
+  color: white;
+  text-align: center;
+  padding: 35px 15px;
+}
+
+footer h2 {
+  font: bold 30px Georgia, serif;
+  margin-bottom: 12px;
+}
+
+@media(max-width:700px) {
+  header {
+    padding: 13px;
+    flex-wrap: wrap;
+  }
+
+  .logo {
+    font-size: 24px;
+  }
+
+  nav {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    gap: 17px;
+  }
+
+  nav a {
+    font-size: 12px;
+  }
+
+  .hero {
+    min-height: 440px;
+    padding: 50px 23px;
+  }
+
+  .hero h2 {
+    font-size: 22px;
+  }
+
+  .decoracao {
+    right: -20px;
+    font-size: 110px;
+  }
+
+  section {
+    padding: 45px 15px;
+  }
+
+  .titulo {
+    font-size: 30px;
   }
 
   .categorias {
     grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
   }
 
-  .banner {
-    padding: 30px 20px;
-    min-height: 380px;
+  .produtos {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
   }
 
-  .banner h1 {
-    font-size: 40px;
+  .foto-produto {
+    height: 130px;
+    font-size: 55px;
   }
 
-  nav {
-    margin-top: 12px;
-  }
-}
-@media (max-width: 600px) {
-  .banner {
-    aspect-ratio: 3 / 2;
+  .info {
     padding: 12px;
   }
 
-  .banner h1 {
-    font-size: 28px;
-    margin-bottom: 8px;
+  .info h3 {
+    font-size: 15px;
   }
 
-  .banner p {
-    font-size: 14px;
-    line-height: 1.4;
+  .info p {
+    font-size: 12px;
+  }
+
+  .preco {
+    font-size: 17px;
   }
 }
 </style>
@@ -215,197 +521,405 @@ footer h2 {
 <body>
 
 <header>
-  <div class="logo">BIJU MIX</div>
+  <div class="logo">Beiju <span>Mix ♥</span></div>
+
   <nav>
     <a href="#inicio">Início</a>
     <a href="#categorias">Categorias</a>
     <a href="#produtos">Produtos</a>
-    <a href="#contato">Contato</a>
   </nav>
+
+  <button class="cart-top" onclick="abrirCarrinho()">
+    🛍️ Sacola <span id="contador">0</span>
+  </button>
 </header>
 
-<!-- BANNER PRINCIPAL -->
-<div class="banner" id="inicio">
-  <div>
-
-    <a href="#produtos" class="botao">COMPRAR AGORA</a>
+<section class="hero" id="inicio">
+  <div class="hero-content">
+    <h1>Beiju <span>Mix</span></h1>
+    <h2>Mais beleza, mais amor em cada detalhe!</h2>
+    <p>
+      Descubra sua beleza em cada escolha.
+      Maquiagem, perfumes, skincare e acessórios
+      para você brilhar todos os dias.
+    </p>
+    <a class="hero-btn" href="#produtos">COMPRAR AGORA →</a>
   </div>
-</div>
-
-<!-- CATEGORIAS -->
-<section id="categorias">
-  <h2 class="titulo">Nossas Categorias</h2>
-
-  <div class="categorias">
-    <div class="categoria">
-      <span>💄</span>
-      Maquiagem
-    </div>
-
-    <div class="categoria">
-      <span>🧴</span>
-      Skincare
-    </div>
-
-    <div class="categoria">
-      <span>🌸</span>
-      Perfumes
-    </div>
-
-    <div class="categoria">
-      <span>💅</span>
-      Acessórios
-    </div>
-  </div>
+  <div class="decoracao">💄</div>
 </section>
 
-<!-- PRODUTOS -->
-<section id="produtos">
-  <h2 class="titulo">Nossos Produtos</h2>
+<div class="beneficios">
+  <span>♡ Compra segura</span>
+  <span>✧ Atendimento especial</span>
+  <span>🚚 Entrega rápida</span>
+</div>
 
-  <div class="produtos" id="listaProdutos"></div>
+<section id="categorias">
+  <h2 class="titulo">Explore nossas categorias</h2>
+  <p class="subtitulo">Tudo que combina com você!</p>
 
-  <div class="carrinho">
-    <h2>🛍️ Meu Carrinho</h2>
-    <div id="itensCarrinho">
-      Seu carrinho está vazio.
-    </div>
-    <h3 id="total">Total: R$ 0,00</h3>
-    <button class="botao" onclick="finalizarPedido()">
-      Finalizar pelo WhatsApp
+  <div class="categorias">
+    <button class="cat" onclick="filtrar('Maquiagem')">
+      <span class="icone">💄</span>Maquiagem
+    </button>
+
+    <button class="cat" onclick="filtrar('Perfumes')">
+      <span class="icone">🌸</span>Perfumes
+    </button>
+
+    <button class="cat" onclick="filtrar('Skincare')">
+      <span class="icone">🧴</span>Skincare
+    </button>
+
+    <button class="cat" onclick="filtrar('Acessórios')">
+      <span class="icone">💎</span>Acessórios
     </button>
   </div>
 </section>
 
-<!-- CONTATO -->
-<footer id="contato">
-  <h2>BEIJU MIX</h2>
-  <p>Sua beleza, seu estilo, sua mistura!</p>
-  <p>Maquiagem • Perfumes • Skincare • Acessórios</p>
-  <p>Instagram: @SEUINSTAGRAM</p>
-  <p>© 2026 Beiju Mix - Todos os direitos reservados.</p>
+<section class="vitrine" id="produtos">
+  <h2 class="titulo">Nossa seleção especial</h2>
+  <p class="subtitulo">Escolha seus favoritos e adicione à sacola.</p>
+
+  <div class="produtos" id="listaProdutos"></div>
+</section>
+
+<!-- SACOLA E FINALIZAÇÃO -->
+
+<div class="fundo-carrinho" id="fundo">
+  <div class="painel">
+
+    <div class="painel-topo">
+      <h2>🛍️ Sua sacola</h2>
+      <button class="fechar" onclick="fecharCarrinho()">×</button>
+    </div>
+
+    <div id="itensCarrinho"></div>
+
+    <div class="total">
+      <span>Total</span>
+      <span id="total">R$ 0,00</span>
+    </div>
+
+    <h3 style="color:#85002f;margin:15px 0">
+      Dados para finalizar seu pedido
+    </h3>
+
+    <form id="formPedido">
+
+      <div class="campo">
+        <label>Nome completo *</label>
+        <input id="nome" required placeholder="Seu nome">
+      </div>
+
+      <div class="campo">
+        <label>WhatsApp para contato *</label>
+        <input id="telefone" required type="tel"
+        placeholder="(88) 99999-9999">
+      </div>
+
+      <div class="campo">
+        <label>Cidade *</label>
+        <input id="cidade" required placeholder="Sua cidade">
+      </div>
+
+      <div class="campo">
+        <label>Como deseja receber? *</label>
+        <select id="recebimento" required onchange="mostrarEndereco()">
+          <option value="">Selecione</option>
+          <option value="Entrega">Entrega</option>
+          <option value="Retirada na loja">Retirada na loja</option>
+        </select>
+      </div>
+
+      <div class="campo" id="campoEndereco" style="display:none">
+        <label>Bairro e endereço *</label>
+        <input id="endereco" placeholder="Rua, número e bairro">
+      </div>
+
+      <div class="campo">
+        <label>Forma de pagamento *</label>
+        <select id="pagamento" required onchange="mostrarTroco()">
+          <option value="">Selecione</option>
+          <option>Pix</option>
+          <option>Dinheiro</option>
+          <option>Cartão de crédito</option>
+          <option>Cartão de débito</option>
+        </select>
+      </div>
+
+      <div class="campo" id="campoTroco" style="display:none">
+        <label>Precisa de troco?</label>
+        <input id="troco" placeholder="Ex.: troco para R$ 100">
+      </div>
+
+      <div class="campo">
+        <label>Observações</label>
+        <textarea id="observacoes"
+        placeholder="Alguma informação sobre seu pedido?"></textarea>
+      </div>
+
+      <button type="submit" class="finalizar">
+        📲 ENVIAR PEDIDO PELO WHATSAPP
+      </button>
+
+    </form>
+
+  </div>
+</div>
+
+<footer>
+  <h2>Beiju Mix ♥</h2>
+  <p>Mais beleza, mais amor em cada detalhe!</p>
+  <p>Obrigada por comprar conosco.</p>
 </footer>
 
 <script>
 
-// CADASTRO DOS PRODUTOS
+// CONFIGURAÇÃO DA LOJA
+// Coloque o WhatsApp da Beiju Mix aqui.
+// Use DDD + número, sem espaços ou símbolos.
+
+const WHATSAPP_LOJA = "5588999999999";
+
+// PRODUTOS DE EXEMPLO
+// Altere nomes, preços e categorias.
+
 const produtos = [
-  {
-    nome: "Kit Maquiagem",
-    preco: 49.90,
-    imagem: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=600"
-  },
-  {
-    nome: "Kit Skincare",
-    preco: 39.90,
-    imagem: "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=600"
-  },
-  {
-    nome: "Perfume Feminino",
-    preco: 59.90,
-    imagem: "https://images.unsplash.com/photo-1541643600914-78b084683601?w=600"
-  },
-  {
-    nome: "Acessórios de Beleza",
-    preco: 24.90,
-    imagem: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=600"
-  }
+  {id:1,nome:"Batom Matte",categoria:"Maquiagem",preco:19.90,icone:"💄",descricao:"Beleza e sofisticação."},
+  {id:2,nome:"Gloss Labial",categoria:"Maquiagem",preco:15.90,icone:"💋",descricao:"Brilho para seus lábios."},
+  {id:3,nome:"Perfume Feminino",categoria:"Perfumes",preco:59.90,icone:"🌸",descricao:"Uma fragrância especial."},
+  {id:4,nome:"Hidratante",categoria:"Skincare",preco:29.90,icone:"🧴",descricao:"Cuide da sua pele."},
+  {id:5,nome:"Kit Skincare",categoria:"Skincare",preco:49.90,icone:"✨",descricao:"Seu momento de cuidado."},
+  {id:6,nome:"Acessório Feminino",categoria:"Acessórios",preco:24.90,icone:"💎",descricao:"Um detalhe que encanta."}
 ];
 
-// WHATSAPP DA LOJA
-// Troque pelo número verdadeiro com DDI e DDD.
-const whatsapp = "5588999999999";
+let carrinho = JSON.parse(localStorage.getItem("beijuCarrinho") || "[]");
 
-let carrinho = [];
+const dinheiro = valor =>
+  valor.toLocaleString("pt-BR", {
+    style:"currency",
+    currency:"BRL"
+  });
 
-function mostrarProdutos() {
-  const lista = document.getElementById("listaProdutos");
+// MOSTRAR PRODUTOS
 
-  lista.innerHTML = produtos.map((produto, index) => `
+function mostrarProdutos(lista = produtos) {
+  const area = document.getElementById("listaProdutos");
+
+  area.innerHTML = lista.map(p => `
     <div class="produto">
-      <img src="${produto.imagem}" alt="${produto.nome}">
-      <h3>${produto.nome}</h3>
-      <div class="preco">
-        ${produto.preco.toLocaleString("pt-BR", {
-          style: "currency",
-          currency: "BRL"
-        })}
+      <div class="foto-produto">${p.icone}</div>
+      <div class="info">
+        <h3>${p.nome}</h3>
+        <p>${p.descricao}</p>
+        <div class="preco">${dinheiro(p.preco)}</div>
+        <button class="adicionar" onclick="adicionar(${p.id})">
+          + ADICIONAR À SACOLA
+        </button>
       </div>
-      <button class="botao" onclick="adicionar(${index})">
-        Adicionar ao carrinho
-      </button>
     </div>
   `).join("");
 }
 
-function adicionar(index) {
-  carrinho.push(produtos[index]);
+// FILTRAR CATEGORIAS
+
+function filtrar(categoria) {
+  document.querySelectorAll(".cat").forEach(b => {
+    b.classList.toggle("ativa", b.textContent.trim() === categoria);
+  });
+
+  mostrarProdutos(produtos.filter(p => p.categoria === categoria));
+
+  document.getElementById("produtos").scrollIntoView({
+    behavior:"smooth"
+  });
+}
+
+// ADICIONAR AO CARRINHO
+
+function adicionar(id) {
+  const produto = produtos.find(p => p.id === id);
+  const existente = carrinho.find(p => p.id === id);
+
+  if (existente) {
+    existente.quantidade++;
+  } else {
+    carrinho.push({...produto, quantidade:1});
+  }
+
+  salvar();
+  abrirCarrinho();
+}
+
+// QUANTIDADE
+
+function alterar(id, valor) {
+  const item = carrinho.find(p => p.id === id);
+  if (!item) return;
+
+  item.quantidade += valor;
+
+  if (item.quantidade <= 0) {
+    carrinho = carrinho.filter(p => p.id !== id);
+  }
+
+  salvar();
+}
+
+// REMOVER
+
+function remover(id) {
+  carrinho = carrinho.filter(p => p.id !== id);
+  salvar();
+}
+
+// SALVAR E ATUALIZAR
+
+function salvar() {
+  localStorage.setItem("beijuCarrinho", JSON.stringify(carrinho));
   atualizarCarrinho();
 }
 
 function atualizarCarrinho() {
-  const itens = document.getElementById("itensCarrinho");
-  const total = document.getElementById("total");
+  const area = document.getElementById("itensCarrinho");
 
-  if (carrinho.length === 0) {
-    itens.innerHTML = "Seu carrinho está vazio.";
-  } else {
-    itens.innerHTML = carrinho.map((produto, index) => `
-      <p>
-        ${produto.nome} -
-        ${produto.preco.toLocaleString("pt-BR", {
-          style: "currency",
-          currency: "BRL"
-        })}
-        <button onclick="remover(${index})">❌</button>
-      </p>
-    `).join("");
-  }
-
-  const valor = carrinho.reduce(
-    (soma, produto) => soma + produto.preco, 0
+  const quantidade = carrinho.reduce(
+    (soma, p) => soma + p.quantidade, 0
   );
 
-  total.innerHTML = "Total: " + valor.toLocaleString(
-    "pt-BR",
-    { style: "currency", currency: "BRL" }
+  const total = carrinho.reduce(
+    (soma, p) => soma + p.preco * p.quantidade, 0
   );
-}
 
-function remover(index) {
-  carrinho.splice(index, 1);
-  atualizarCarrinho();
-}
+  document.getElementById("contador").textContent = quantidade;
+  document.getElementById("total").textContent = dinheiro(total);
 
-function finalizarPedido() {
-  if (carrinho.length === 0) {
-    alert("Adicione produtos ao carrinho!");
+  if (!carrinho.length) {
+    area.innerHTML = '<div class="vazio">🛍️<h3>Sua sacola está vazia!</h3><p>Escolha seus produtos favoritos.</p></div>';
     return;
   }
 
-  let mensagem = "Olá! Quero fazer um pedido na Beiju Mix:\n\n";
+  area.innerHTML = carrinho.map(p => `
+    <div class="item">
+      <div class="item-info">
+        <strong>${p.nome}</strong>
+        <small>${dinheiro(p.preco)} cada</small>
 
-  carrinho.forEach(produto => {
-    mensagem += produto.nome + " - R$ " +
-      produto.preco.toFixed(2).replace(".", ",") + "\n";
-  });
+        <div class="quantidade">
+          <button onclick="alterar(${p.id},-1)">−</button>
+          ${p.quantidade}
+          <button onclick="alterar(${p.id},1)">+</button>
+        </div>
 
-  const total = carrinho.reduce(
-    (soma, produto) => soma + produto.preco, 0
-  );
+        <button class="remover" onclick="remover(${p.id})">
+          Remover produto
+        </button>
+      </div>
 
-  mensagem += "\nTotal: R$ " + total.toFixed(2);
-
-  window.open(
-    "https://wa.me/" + whatsapp +
-    "?text=" + encodeURIComponent(mensagem),
-    "_blank"
-  );
+      <strong>${dinheiro(p.preco * p.quantidade)}</strong>
+    </div>
+  `).join("");
 }
 
+// ABRIR E FECHAR
+
+function abrirCarrinho() {
+  document.getElementById("fundo").classList.add("aberto");
+  atualizarCarrinho();
+}
+
+function fecharCarrinho() {
+  document.getElementById("fundo").classList.remove("aberto");
+}
+
+// ENTREGA E TROCO
+
+function mostrarEndereco() {
+  const entrega = document.getElementById("recebimento").value === "Entrega";
+
+  document.getElementById("campoEndereco").style.display =
+    entrega ? "block" : "none";
+
+  document.getElementById("endereco").required = entrega;
+}
+
+function mostrarTroco() {
+  const dinheiroSelecionado =
+    document.getElementById("pagamento").value === "Dinheiro";
+
+  document.getElementById("campoTroco").style.display =
+    dinheiroSelecionado ? "block" : "none";
+}
+
+// FINALIZAR PEDIDO
+
+document.getElementById("formPedido").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  if (!carrinho.length) {
+    alert("Adicione produtos à sacola primeiro!");
+    return;
+  }
+
+  const nome = document.getElementById("nome").value;
+  const telefone = document.getElementById("telefone").value;
+  const cidade = document.getElementById("cidade").value;
+  const recebimento = document.getElementById("recebimento").value;
+  const endereco = document.getElementById("endereco").value;
+  const pagamento = document.getElementById("pagamento").value;
+  const troco = document.getElementById("troco").value;
+  const observacoes = document.getElementById("observacoes").value;
+
+  const total = carrinho.reduce(
+    (soma,p) => soma + p.preco * p.quantidade, 0
+  );
+
+  let mensagem = "💗 *NOVO PEDIDO - BEIJU MIX* 💗\n\n";
+
+  mensagem += "👤 *CLIENTE:* " + nome + "\n";
+  mensagem += "📱 *CONTATO:* " + telefone + "\n";
+  mensagem += "📍 *CIDADE:* " + cidade + "\n\n";
+
+  mensagem += "🛍️ *PRODUTOS:*\n";
+
+  carrinho.forEach(p => {
+    mensagem +=
+      `• ${p.nome} - ${p.quantidade}x - ${dinheiro(p.preco*p.quantidade)}\n`;
+  });
+
+  mensagem += "\n💰 *TOTAL: " + dinheiro(total) + "*\n";
+  mensagem += "\n🚚 *RECEBIMENTO:* " + recebimento + "\n";
+
+  if (recebimento === "Entrega") {
+    mensagem += "🏠 *ENDEREÇO:* " + endereco + "\n";
+  }
+
+  mensagem += "💳 *PAGAMENTO:* " + pagamento + "\n";
+
+  if (pagamento === "Dinheiro" && troco) {
+    mensagem += "💵 *TROCO:* " + troco + "\n";
+  }
+
+  if (observacoes) {
+    mensagem += "\n📝 *OBSERVAÇÕES:* " + observacoes + "\n";
+  }
+
+  mensagem += "\nObrigada pela preferência! 💗";
+
+  const url = "https://wa.me/" + WHATSAPP_LOJA +
+    "?text=" + encodeURIComponent(mensagem);
+
+  window.open(url, "_blank");
+});
+
+// INICIALIZAÇÃO
+
 mostrarProdutos();
+atualizarCarrinho();
 
 </script>
 
 </body>
 </html>
+
