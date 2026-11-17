@@ -90,13 +90,25 @@ button{cursor:pointer}
   background:#3de88b20;
   filter:blur(30px);
 }
-/* MASCOTE */
-.hero-art {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  max-width: 280px;
-  margin: 0 auto;
+/* MASCOTES DE BOAS-VINDAS */
+
+.mascote-boas-vindas {
+  width: 230px;
+  height: auto;
+  object-fit: contain;
+  position: absolute;
+  right: 15px;
+  bottom: 10px;
+  animation: boas-vindas 3s ease-in-out infinite;
+}
+
+@keyframes boas-vindas {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(3deg);
+  }
 }
 
 .hero-art img {
