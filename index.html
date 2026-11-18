@@ -1825,10 +1825,7 @@ async function openCatalog(brand){
     behavior:"smooth"
   });
 }
-  
-  renderCart();
-  window.scrollTo({top:document.getElementById("catalog").offsetTop-15,behavior:"smooth"});
-}
+
 function filterProducts(){
   const term=document.getElementById("productSearch").value.trim().toLocaleLowerCase("pt-BR");
   document.querySelectorAll("#products .product").forEach(card=>{
