@@ -1748,7 +1748,7 @@ function money(v){
   return v.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
 }
 
-function openCatalog(brand){
+async function openCatalog(brand){
   currentBrand=brand;
   cart=[];
   const data=catalogues[brand];
@@ -1763,35 +1763,66 @@ function openCatalog(brand){
   document.getElementById("city").value=attendants[brand].city;
   document.getElementById("productSearch").value="";
 
-  document.getElementById("products").innerHTML =
-  data.products.length === 0
-  ? `
-    <div class="empty-products">
-      <img
-        src="./D2B1669E-088A-4E8C-A600-ACAE13E0717C.png"
-        alt="Ainda não há produtos aqui"
-        class="empty-products-mascot"
-      >
-    </div>
-  `
-  : data.products.map((p,i)=>`
-    <article class="product">
-      <div class="fruit">${p.emoji}</div>
-      <h3>${p.name}</h3>
-      <p>${p.description}</p>
-      <select id="size-${i}" aria-label="Escolha o peso de ${p.name}">
-        <option value="250g">250 g — ${money(data.prices["250g"])}</option>
-        <option value="500g">500 g — ${money(data.prices["500g"])}</option>
-        <option value="1kg">1 kg — ${money(data.prices["1kg"])}</option>
-      </select>
-      <button class="add" onclick="addToCart(${i})">Adicionar ao carrinho</button>
-    </article>
-  `).join("");
+  const produtosDiv=document.getElementById("products");
+  produtosDiv.innerHTML="Carregando disponibilidade...";
+
+  try {
+    const resposta=await fetch("./api/estoque.php");
+
+    if(!resposta.ok){
+      throw new Error("Erro ao consultar estoque");
+    }
+
+    const estoque=await resposta.json();
+    const estoqueLoja=estoque[brand] || {};
+
+    produtosDiv.innerHTML =
+    data.products.length === 0
+    ? `
+      <div class="empty-products">
+        <img
+          src="./D2B1669E-088A-4E8C-A600-ACAE13E0717C.png"
+          alt="Ainda não há produtos aqui"
+          class="empty-products-mascot"
+        >
+      </div>
+    `
+    : data.products.map((p,i)=>{
+      const item=estoqueLoja[p.name];
+      const disponivel=item && item.disponivel === true;
+      const precoKg=item ? Number(item.preco_por_kg) : data.prices["1kg"];
+
+      return `
+        <article class="product">
+          <div class="fruit">${p.emoji}</div>
+          <h3>${p.name}</h3>
+          <p>${p.description}</p>
+
+          <p style="color:${disponivel ? 'green' : 'red'};font-weight:bold">
+            ${disponivel ? 'Disponível' : 'Esgotado'}
+          </p>
+
+          <select id="size-${i}" aria-label="Escolha o peso de ${p.name}" ${disponivel ? "" : "disabled"}>
+            <option value="250g">250 g — ${money(precoKg*0.25)}</option>
+            <option value="500g">500 g — ${money(precoKg*0.5)}</option>
+            <option value="1kg">1 kg — ${money(precoKg)}</option>
+          </select>
+
+          <button class="add" onclick="addToCart(${i})" ${disponivel ? "" : "disabled"}>
+            ${disponivel ? "Adicionar ao carrinho" : "Produto esgotado"}
+          </button>
+        </article>
+      `;
+    }).join("");
+
+  } catch(erro) {
+    produtosDiv.innerHTML="Não foi possível carregar a disponibilidade. Tente novamente.";
+    console.error(erro);
+  }
 
   renderCart();
   window.scrollTo({top:document.getElementById("catalog").offsetTop-15,behavior:"smooth"});
 }
-
 function filterProducts(){
   const term=document.getElementById("productSearch").value.trim().toLocaleLowerCase("pt-BR");
   document.querySelectorAll("#products .product").forEach(card=>{
