@@ -1815,10 +1815,30 @@ async function openCatalog(brand){
       `;
     }).join("");
   } catch(erro) {
-    produtosDiv.innerHTML="Não foi possível carregar a disponibilidade. Tente novamente.";
-    console.error(erro);
-  }
+  console.error(erro);
 
+  produtosDiv.innerHTML = data.products.map((p,i) => `
+    <article class="product">
+      <div class="fruit">${p.emoji}</div>
+      <h3>${p.name}</h3>
+      <p>${p.description}</p>
+
+      <p style="color:#b7791f;font-weight:bold">
+        Consulte a disponibilidade pelo WhatsApp
+      </p>
+
+      <select id="size-${i}" aria-label="Escolha o peso de ${p.name}">
+        <option value="250g">250 g — ${money(data.prices["250g"])}</option>
+        <option value="500g">500 g — ${money(data.prices["500g"])}</option>
+        <option value="1kg">1 kg — ${money(data.prices["1kg"])}</option>
+      </select>
+
+      <button class="add" onclick="addToCart(${i})">
+        Adicionar ao carrinho
+      </button>
+    </article>
+  `).join("");
+}
   renderCart();
   window.scrollTo({
     top:document.getElementById("catalog").offsetTop-15,
