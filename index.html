@@ -1818,6 +1818,9 @@ async function openCatalog(brand){
   } catch(erro) {
     produtosDiv.innerHTML="Não foi possível carregar a disponibilidade. Tente novamente.";
     console.error(erro);
+      renderCart();
+  window.scrollTo({top:document.getElementById("catalog").offsetTop-15,behavior:"smooth"});
+}
   }
 
   renderCart();
