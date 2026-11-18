@@ -1814,15 +1814,18 @@ async function openCatalog(brand){
         </article>
       `;
     }).join("");
-
   } catch(erro) {
     produtosDiv.innerHTML="Não foi possível carregar a disponibilidade. Tente novamente.";
     console.error(erro);
-      renderCart();
-  window.scrollTo({top:document.getElementById("catalog").offsetTop-15,behavior:"smooth"});
-}
   }
 
+  renderCart();
+  window.scrollTo({
+    top:document.getElementById("catalog").offsetTop-15,
+    behavior:"smooth"
+  });
+}
+  
   renderCart();
   window.scrollTo({top:document.getElementById("catalog").offsetTop-15,behavior:"smooth"});
 }
