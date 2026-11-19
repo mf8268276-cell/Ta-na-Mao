@@ -457,7 +457,13 @@ function atualizar(){
                 <button onclick="remover(${i})">×</button>
             </div>
         `).join("")
-        : "<p>Seu carrinho está vazio.</p>";
+    : `
+<div class="carrinho-vazio">
+    <img src="ED30557B-97E0-4C62-B886-0C67BDD7A1EF.webp" alt="Carrinho vazio">
+    <p>Seu carrinho está vazio.</p>
+    <span>Escolha seus produtos e eles aparecerão aqui!</span>
+</div>
+`;
 
     document.getElementById("itens").innerHTML = conteudo;
     document.getElementById("itens-carrinho").innerHTML = conteudo;
