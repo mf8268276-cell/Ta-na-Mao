@@ -277,17 +277,24 @@ Tudo em um só lugar, com praticidade e estilo.
 <div class="produtos" id="lista"></div>
 </section>
 
-<section class="container" id="contato">
-<div class="atendimento">
-<h2>Estamos aqui para atender você.</h2>
-<p>
-Precisa de ajuda para escolher seu produto?
-Fale diretamente com nossa equipe.
-</p>
-<a href="#" onclick="falarWhatsApp();return false" class="whats">
-FALAR PELO WHATSAPP
-</a>
-</div>
+<section class="container" id="meu-carrinho">
+    <div class="meu-carrinho">
+        <h2>🛒 Meu carrinho</h2>
+
+        <div id="itens-carrinho">
+            <p>Seu carrinho está vazio.</p>
+        </div>
+
+        <div class="resumo-carrinho">
+            <strong>
+                Total: <span id="total-carrinho">R$ 0,00</span>
+            </strong>
+
+            <button onclick="finalizar()">
+                FINALIZAR PEDIDO
+            </button>
+        </div>
+    </div>
 </section>
 
 <div id="carrinho-box">
