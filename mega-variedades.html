@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mega Variedades | Sua loja online</title>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: Arial, sans-serif;
+    background: #fff;
+    color: #172b4d;
+}
+:root {
+    --azul: #0757c8;
+    --escuro: #062c68;
+    --claro: #edf5ff;
+}
+.topo {
+    background: #062c68;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+header {
+    background: white;
+    padding: 18px 6%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #e7edf5;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+.logo h1 {
+    color: #0757c8;
+    font-size: 25px;
+    letter-spacing: -1px;
+}
+.logo span {
+    font-size: 10px;
+    color: #71819a;
+    letter-spacing: 2px;
+}
+nav {
+    display: flex;
+    gap: 25px;
+}
+nav a {
+    text-decoration: none;
+    color: #253957;
+    font-size: 14px;
+    font-weight: bold;
+}
+.carrinho-topo {
+    background: #0757c8;
+    color: white;
+    border: 0;
+    padding: 12px 20px;
+    border-radius: 7px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.hero {
+    background: linear-gradient(110deg, #062c68, #0757c8);
+    color: white;
+    padding: 85px 8%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 400px;
+}
+.hero-text {
+    max-width: 600px;
+}
+.hero small {
+    letter-spacing: 3px;
+    color: #b8ddff;
+    font-weight: bold;
+}
+.hero h2 {
+    font-size: clamp(40px, 6vw, 65px);
+    margin: 20px 0;
+    line-height: 1.05;
+}
+.hero h2 span {
+    color: #a9dfff;
+}
+.hero p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #e0edff;
+}
+.botao {
+    display: inline-block;
+    margin-top: 25px;
+    background: white;
+    color: #0757c8;
+    padding: 15px 28px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+}
+.hero-decoration {
+    font-size: 125px;
+    background: #ffffff15;
+    border: 1px solid #ffffff35;
+    border-radius: 50%;
+    width: 230px;
+    height: 230px;
+    display: grid;
+    place-items: center;
+}
+.beneficios {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 25px 7%;
+    gap: 20px;
+    border-bottom: 1px solid #edf0f5;
+}
+.beneficio {
+    text-align: center;
+    padding: 12px;
+}
+.beneficio strong {
+    display: block;
+    color: #0757c8;
+    margin-bottom: 7px;
+}
+.beneficio p {
+    font-size: 12px;
+    color: #71819a;
+}
+.container {
+    max-width: 1200px;
+    margin: 65px auto;
+    padding: 0 25px;
+}
+.titulo {
+    text-align: center;
+    margin-bottom: 35px;
+}
+.titulo small {
+    color: #0757c8;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+.titulo h2 {
+    font-size: 32px;
+    margin: 12px 0;
+    color: #102e60;
+}
+.titulo p {
+    color: #78869a;
+    font-size: 14px;
+}
+/* CATEGORIAS */
+.categorias {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+}
+.categoria {
+    background: #e8f2ff;
+    padding: 25px 12px;
+    text-align: center;
+    border-radius: 14px;
+    border: 1px solid #cfe1fb;
+    transition: .2s;
+    cursor: pointer;
+    min-height: 150px;
+}
+.categoria:hover {
+    background: #d8eaff;
+    transform: translateY(-4px);
+}
+.categoria .icone {
+    font-size: 32px;
+    margin-bottom: 12px;
+}
+.categoria h3 {
+    font-size: 15px;
+    color: #173b75;
+    margin-bottom: 8px;
+}
+.categoria p {
+    color: #58708f;
+    font-size: 12px;
+    line-height: 1.5;
+}
+/* FILTROS */
+.filtros {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+.filtros button {
+    border: 1px solid #d9e4f3;
+    background: white;
+    padding: 11px 20px;
+    border-radius: 5px;
+    color: #0757c8;
+    font-weight: bold;
+    cursor: pointer;
+}
+.filtros button.ativo {
+    background: #0757c8;
+    color: white;
+}
+/* PRODUTOS */
+.produtos {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+.produto {
+    border: 1px solid #e6ebf2;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: .2s;
+    background: white;
+}
+.produto:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px #062c6815;
+}
+.foto {
+    height: 220px;
+    background: linear-gradient(145deg, #edf4ff, #d9e9ff);
+    display: grid;
+    place-items: center;
+    font-size: 65px;
+    position: relative;
+}
+.foto small {
+    position: absolute;
+    bottom: 10px;
+    font-size: 10px;
+    color: #56749c;
+    letter-spacing: 1px;
+}
+.info {
+    padding: 18px;
+}
+.info small {
+    color: #0757c8;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+.info h3 {
+    font-size: 16px;
+    margin: 10px 0;
+}
+.preco {
+    font-size: 21px;
+    color: #0757c8;
+    font-weight: bold;
+    margin: 15px 0;
+}
+.info button {
+    width: 100%;
+    background: #0757c8;
+    color: white;
+    border: 0;
+    padding: 13px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.info button:hover {
+    background: #062c68;
+}
+/* CARRINHO ÚNICO */
+#meu-carrinho {
+    max-width: 1100px;
+    margin: 55px auto;
+    padding: 18px;
+    border-radius: 28px;
+    background: rgba(190, 218, 255, .30);
+}
+.meu-carrinho {
+    background: rgba(255, 255, 255, .90);
+    border: 1px solid rgba(80, 145, 230, .20);
+    border-radius: 26px;
+    padding: 30px 24px;
+    box-shadow: 0 12px 35px rgba(30, 85, 160, .08);
+}
+.meu-carrinho h2 {
+    color: #1456b8;
+    font-size: 28px;
+    margin-bottom: 25px;
+}
+#itens-carrinho {
+    color: #253957;
+    font-size: 16px;
+}
+.item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 14px;
+    margin-bottom: 10px;
+    background: #edf5ff;
+    border-radius: 14px;
+}
+.item button {
+    background: #dceaff;
+    border: 0;
+    color: #0757c8;
+    border-radius: 8px;
+    padding: 7px 12px;
+    font-size: 18px;
+    cursor: pointer;
+}
+.carrinho-vazio,
+.carrinho-cheio {
+    text-align: center;
+    padding: 20px;
+}
+.carrinho-vazio img,
+.carrinho-cheio img {
+    width: 190px;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto 15px;
+}
+.carrinho-vazio p {
+    color: #24528c;
+    font-weight: bold;
+    font-size: 17px;
+    margin-bottom: 7px;
+}
+.carrinho-vazio span {
+    color: #7186a3;
+    font-size: 14px;
+}
+.resumo-carrinho {
+    margin-top: 25px;
+    color: #17345f;
+    font-size: 20px;
+}
+.resumo-carrinho button {
+    width: 100%;
+    margin-top: 22px;
+    padding: 17px;
+    border: none;
+    border-radius: 40px;
+    background: #1456c5;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+}
+.resumo-carrinho button:hover {
+    background: #062c68;
+}
+/* FORMULARIO CENTRALIZADO */
+.modal-pedido {
+    display: none;
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(5, 25, 60, .70);
+    z-index: 9999;
+    padding: 20px;
+    overflow-y: auto;
+    align-items: center;
+    justify-content: center;
+}
+.formulario-caixa {
+    background: #f4f8ff;
+    width: 100%;
+    max-width: 480px;
+    margin: auto;
+    padding: 32px 25px;
+    border-radius: 25px;
+    position: relative;
+    box-shadow: 0 15px 45px rgba(20, 65, 130, .25);
+}
+.formulario-caixa h2 {
+    color: #1856a8;
+    margin-bottom: 8px;
+    font-size: 24px;
+    padding-right: 25px;
+}
+.formulario-caixa p {
+    color: #718096;
+    margin-bottom: 22px;
+    font-size: 14px;
+}
+.formulario-caixa label {
+    display: block;
+    margin: 15px 0 7px;
+    color: #253957;
+    font-weight: bold;
+    font-size: 14px;
+}
+.formulario-caixa input,
+.formulario-caixa textarea,
+.formulario-caixa select {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #d5e3f7;
+    border-radius: 12px;
+    background: white;
+    font-size: 15px;
+    font-family: Arial, sans-serif;
+}
+.formulario-caixa textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+.formulario-caixa input:focus,
+.formulario-caixa textarea:focus,
+.formulario-caixa select:focus {
+    outline: 2px solid #a9ceff;
+}
+.formulario-caixa input:disabled,
+.formulario-caixa textarea:disabled {
+    background: #e8edf5;
+}
+.fechar-formulario {
+    position: absolute;
+    right: 18px;
+    top: 12px;
+    border: none;
+    background: transparent;
+    font-size: 30px;
+    color: #1856a8;
+    cursor: pointer;
+}
+.enviar-pedido {
+    width: 100%;
+    padding: 16px;
+    margin-top: 24px;
+    border: none;
+    border-radius: 30px;
+    background: #1856c5;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+}
+.enviar-pedido:hover {
+    background: #062c68;
+}
+/* RODAPE */
+.rodape {
+    background: #062c68;
+    color: white;
+    padding: 45px 20px;
+    text-align: center;
+    margin-top: 70px;
+}
+.rodape h2 {
+    font-size: 25px;
+}
+.rodape p {
+    color: #c4d9f5;
+    margin-top: 12px;
+    font-size: 13px;
+}
+/* CELULAR */
+@media(max-width:800px) {
+    nav {
+        display: none;
+    }
+    .hero {
+        padding: 55px 7%;
+    }
+    .hero-decoration {
+        display: none;
+    }
+    .produtos {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+    .foto {
+        height: 160px;
+    }
+    .categorias {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .beneficios {
+        grid-template-columns: 1fr;
+    }
+    header {
+        padding: 14px 5%;
+    }
+    .logo h1 {
+        font-size: 18px;
+    }
+    .logo span {
+        font-size: 8px;
+    }
+    .carrinho-topo {
+        padding: 10px;
+        font-size: 12px;
+    }
+    .titulo h2 {
+        font-size: 26px;
+    }
+    #meu-carrinho {
+        margin: 35px 12px;
+        padding: 10px;
+    }
+    .meu-carrinho {
+        padding: 23px 15px;
+    }
+    .formulario-caixa {
+        padding: 28px 20px;
+    }
+}
+</style>
+</head>
+<body>
+<div class="topo">
+MODA • ACESSÓRIOS • PRESENTES • VARIEDADES
+</div>
+<header>
+    <div class="logo">
+        <h1>MEGA VARIEDADES</h1>
+        <span>QUALIDADE · ESTILO · OFERTAS</span>
+    </div>
+    <nav>
+        <a href="#">Início</a>
+        <a href="#categorias">Categorias</a>
+        <a href="#produtos">Produtos</a>
+        <a href="#meu-carrinho">Carrinho</a>
+    </nav>
+    <button class="carrinho-topo" onclick="irParaCarrinho()">
+        🛒 Carrinho (<span id="quantidade">0</span>)
+    </button>
+</header>
+<section class="hero">
+    <div class="hero-text">
+        <small>SEJA BEM-VINDO À MEGA VARIEDADES</small>
+        <h2>Seu estilo.<br><span>Suas escolhas.</span></h2>
+        <p>
+            Descubra uma seleção especial de moda,
+            acessórios e produtos para o seu dia a dia.
+            Tudo em um só lugar, com praticidade e estilo.
+        </p>
+        <a href="#produtos" class="botao">
+            EXPLORAR PRODUTOS →
+        </a>
+    </div>
+    <div class="hero-decoration">🛍️</div>
+</section>
+<section class="beneficios">
+    <div class="beneficio">
+        <strong>✦ GRANDE VARIEDADE</strong>
+        <p>Produtos para todos os gostos.</p>
+    </div>
+    <div class="beneficio">
+        <strong>✦ COMPRA SIMPLES</strong>
+        <p>Escolha seus produtos e monte seu pedido.</p>
+    </div>
+    <div class="beneficio">
+        <strong>✦ ATENDIMENTO DIRETO</strong>
+        <p>Compre com praticidade pelo WhatsApp.</p>
+    </div>
+</section>
+<section class="container" id="categorias">
+    <div class="titulo">
+        <small>EXPLORE NOSSA LOJA</small>
+        <h2>Compre por categoria</h2>
+        <p>Encontre exatamente o que procura.</p>
+    </div>
+    <div class="categorias">
+        <div class="categoria" onclick="filtrar('Vestidos')">
+            <div class="icone">👗</div>
+            <h3>Vestidos</h3>
+            <p>Modelos casuais, elegantes e para várias ocasiões.</p>
+        </div>
+        <div class="categoria" onclick="filtrar('Cuecas')">
+            <div class="icone">🩳</div>
+            <h3>Cuecas</h3>
+            <p>Opções confortáveis para o dia a dia.</p>
+        </div>
+        <div class="categoria" onclick="filtrar('Calcinhas')">
+            <div class="icone">♡</div>
+            <h3>Calcinhas</h3>
+            <p>Variedade de modelos para sua rotina.</p>
+        </div>
+        <div class="categoria" onclick="filtrar('Relógios')">
+            <div class="icone">⌚</div>
+            <h3>Relógios</h3>
+            <p>Acessórios para diferentes estilos.</p>
+        </div>
+        <div class="categoria" onclick="filtrar('Variedades')">
+            <div class="icone">🎁</div>
+            <h3>Variedades</h3>
+            <p>Presentes e acessórios para escolher.</p>
+        </div>
+    </div>
+</section>
+<section class="container" id="produtos">
+    <div class="titulo">
+        <small>NOSSA VITRINE</small>
+        <h2>Produtos em destaque</h2>
+        <p>Escolha seus favoritos e adicione ao carrinho.</p>
+    </div>
+    <div class="filtros">
+        <button class="ativo" onclick="filtrar('Todos')">Todos</button>
+        <button onclick="filtrar('Vestidos')">Vestidos</button>
+        <button onclick="filtrar('Cuecas')">Cuecas</button>
+        <button onclick="filtrar('Calcinhas')">Calcinhas</button>
+        <button onclick="filtrar('Relógios')">Relógios</button>
+        <button onclick="filtrar('Variedades')">Variedades</button>
+    </div>
+    <div class="produtos" id="lista"></div>
+</section>
+<!-- CARRINHO: EXISTE SOMENTE ESTE -->
+<section class="container" id="meu-carrinho">
+    <div class="meu-carrinho">
+        <h2>🛒 Meu carrinho</h2>
+        <div id="itens-carrinho"></div>
+        <div class="resumo-carrinho">
+            <strong>
+                Total: <span id="total-carrinho">R$ 0,00</span>
+            </strong>
+            <button onclick="abrirFormulario()">
+                FINALIZAR PEDIDO
+            </button>
+        </div>
+    </div>
+</section>
+<footer class="rodape">
+    <h2>MEGA VARIEDADES</h2>
+    <p>Moda · Acessórios · Presentes · Variedades</p>
+    <p>Uma experiência de compra fácil e prática.</p>
+    <p>© 2026 Mega Variedades</p>
+</footer>
+<!-- FORMULARIO: FICA ESCONDIDO ATE FINALIZAR -->
+<div id="formulario-pedido" class="modal-pedido">
+    <div class="formulario-caixa">
+        <button class="fechar-formulario" onclick="fecharFormulario()">×</button>
+        <h2>Finalizar meu pedido 🛍️</h2>
+        <p>Preencha seus dados para concluir sua compra.</p>
+        <label for="cliente-nome">Nome completo</label>
+        <input type="text" id="cliente-nome" placeholder="Seu nome completo">
+        <label for="cliente-endereco">Endereço</label>
+        <textarea id="cliente-endereco" placeholder="Rua, número, bairro e cidade"></textarea>
+        <label for="tipo-entrega">Forma de recebimento</label>
+        <select id="tipo-entrega" onchange="ajustarEndereco()">
+            <option value="Entrega">Entrega</option>
+            <option value="Retirada na loja">Retirada na loja</option>
+        </select>
+        <label for="forma-pagamento">Forma de pagamento</label>
+        <select id="forma-pagamento">
+            <option value="">Selecione</option>
+            <option value="Pix">Pix</option>
+            <option value="Dinheiro">Dinheiro</option>
+            <option value="Cartão">Cartão</option>
+        </select>
+        <button class="enviar-pedido" onclick="enviarPedido()">
+            ENVIAR PEDIDO PELO WHATSAPP
+        </button>
+    </div>
+</div>
+<script>
+const WHATSAPP = "5566992027577";
+const produtos = [
+    {nome:"Vestido casual", categoria:"Vestidos", preco:59.90, icone:"👗"},
+    {nome:"Vestido elegante", categoria:"Vestidos", preco:79.90, icone:"✨"},
+    {nome:"Cueca boxer", categoria:"Cuecas", preco:19.90, icone:"🩳"},
+    {nome:"Kit de cuecas", categoria:"Cuecas", preco:49.90, icone:"📦"},
+    {nome:"Kit de calcinhas", categoria:"Calcinhas", preco:29.90, icone:"🎀"},
+    {nome:"Calcinha avulsa", categoria:"Calcinhas", preco:12, icone:"♡"},
+    {nome:"Relógio feminino", categoria:"Relógios", preco:45, icone:"⌚"},
+    {nome:"Relógio casual", categoria:"Relógios", preco:39.90, icone:"💎"},
+    {nome:"Bolsa feminina", categoria:"Variedades", preco:59.90, icone:"👜"},
+    {nome:"Óculos de sol", categoria:"Variedades", preco:29.90, icone:"🕶️"},
+    {nome:"Presente especial", categoria:"Variedades", preco:25, icone:"🎁"},
+    {nome:"Acessórios", categoria:"Variedades", preco:15, icone:"💍"}
+];
+let carrinho = [];
+let categoriaAtual = "Todos";
+function moeda(valor) {
+    return valor.toLocaleString("pt-BR", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    });
+}
+function mostrarProdutos() {
+    let lista = produtos.filter(p =>
+        categoriaAtual === "Todos" || p.categoria === categoriaAtual
+    );
+    document.getElementById("lista").innerHTML = lista.map(p => `
+        <div class="produto">
+            <div class="foto">
+                ${p.icone}
+                <small>MEGA VARIEDADES</small>
+            </div>
+            <div class="info">
+                <small>${p.categoria.toUpperCase()}</small>
+                <h3>${p.nome}</h3>
+                <div class="preco">R$ ${moeda(p.preco)}</div>
+                <button onclick="adicionar('${p.nome}')">
+                    ADICIONAR AO CARRINHO
+                </button>
+            </div>
+        </div>
+    `).join("");
+}
+function filtrar(categoria) {
+    categoriaAtual = categoria;
+    mostrarProdutos();
+    document.querySelectorAll(".filtros button").forEach(b => {
+        b.classList.toggle(
+            "ativo",
+            b.textContent.trim() === categoria
+        );
+    });
+    document.getElementById("produtos").scrollIntoView({
+        behavior: "smooth"
+    });
+}
+function adicionar(nome) {
+    let produto = produtos.find(p => p.nome === nome);
+    if (!produto) return;
+    carrinho.push(produto);
+    atualizar();
+}
+function atualizar() {
+    let total = carrinho.reduce((s, p) => s + p.preco, 0);
+    document.getElementById("quantidade").textContent = carrinho.length;
+    let conteudo;
+    if (carrinho.length > 0) {
+        conteudo = `
+            <div class="carrinho-cheio">
+                <img src="66F25DE4-3AB4-4B49-9512-436BA253F084.webp"
+                     alt="Carrinho cheio">
+            </div>
+            ${carrinho.map((p, i) => `
+                <div class="item">
+                    <span>${p.nome} — R$ ${moeda(p.preco)}</span>
+                    <button onclick="remover(${i})">×</button>
+                </div>
+            `).join("")}
+        `;
+    } else {
+        conteudo = `
+            <div class="carrinho-vazio">
+                <img src="ED30557B-97E0-4C62-B886-0C67BDD7A1EF.webp"
+                     alt="Carrinho vazio">
+                <p>Seu carrinho está vazio.</p>
+                <span>Escolha seus produtos e eles aparecerão aqui!</span>
+            </div>
+        `;
+    }
+    document.getElementById("itens-carrinho").innerHTML = conteudo;
+    document.getElementById("total-carrinho").textContent = "R$ " + moeda(total);
+}
+function remover(i) {
+    carrinho.splice(i, 1);
+    atualizar();
+}
+function irParaCarrinho() {
+    document.getElementById("meu-carrinho").scrollIntoView({
+        behavior: "smooth"
+    });
+}
+function abrirFormulario() {
+    if (!carrinho.length) {
+        alert("Adicione produtos ao carrinho primeiro!");
+        return;
+    }
+    document.getElementById("formulario-pedido").style.display = "flex";
+    document.body.style.overflow = "hidden";
+}
+function fecharFormulario() {
+    document.getElementById("formulario-pedido").style.display = "none";
+    document.body.style.overflow = "";
+}
+function ajustarEndereco() {
+    const retirada =
+        document.getElementById("tipo-entrega").value === "Retirada na loja";
+    const endereco = document.getElementById("cliente-endereco");
+    endereco.disabled = retirada;
+    endereco.placeholder = retirada
+        ? "Não precisa informar endereço para retirada"
+        : "Rua, número, bairro e cidade";
+    if (retirada) {
+        endereco.value = "";
+    }
+}
+function enviarPedido() {
+    const nome = document.getElementById("cliente-nome").value.trim();
+    const endereco = document.getElementById("cliente-endereco").value.trim();
+    const entrega = document.getElementById("tipo-entrega").value;
+    const pagamento = document.getElementById("forma-pagamento").value;
+    if (!nome) {
+        alert("Informe seu nome completo.");
+        return;
+    }
+    if (entrega === "Entrega" && !endereco) {
+        alert("Informe seu endereço para entrega.");
+        return;
+    }
+    if (!pagamento) {
+        alert("Selecione a forma de pagamento.");
+        return;
+    }
+    const total = carrinho.reduce((s, p) => s + p.preco, 0);
+    const mensagem =
+        "Olá! Quero fazer um pedido na Mega Variedades:\n\n" +
+        "CLIENTE: " + nome + "\n" +
+        "ENDEREÇO: " + (entrega === "Entrega" ? endereco : "Retirada na loja") + "\n" +
+        "RECEBIMENTO: " + entrega + "\n" +
+        "PAGAMENTO: " + pagamento + "\n\n" +
+        "PRODUTOS:\n" +
+        carrinho.map(p => p.nome + " - R$ " + moeda(p.preco)).join("\n") +
+        "\n\nTOTAL: R$ " + moeda(total);
+    const link =
+        "https://wa.me/" + WHATSAPP +
+        "?text=" + encodeURIComponent(mensagem);
+    window.open(link, "_blank");
+}
+atualizar();
+mostrarProdutos();
+</script>
+</body>
+</html>
