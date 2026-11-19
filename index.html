@@ -1532,6 +1532,102 @@ body {
   color: #ffffff !important;
   border: 1px solid #D9B65D !important;
 }
+
+.mega-card {
+  display: flex;
+  align-items: stretch;
+  overflow: hidden;
+  text-decoration: none;
+  color: #14509a;
+  background: white;
+  border: 3px solid #1764c0;
+  border-radius: 28px;
+  min-height: 250px;
+  margin: 25px 0;
+  box-shadow: 0 8px 22px #1764c022;
+}
+
+.mega-card .store-logo {
+  width: 29%;
+  min-width: 130px;
+  background: #edf5ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+}
+
+.mega-card .store-logo img {
+  width: 100%;
+  max-width: 160px;
+  height: 160px;
+  object-fit: contain;
+}
+
+.mega-card .store-info {
+  flex: 1;
+  padding: 25px;
+}
+
+.mega-card .store-badge {
+  display: inline-block;
+  background: linear-gradient(110deg,#092c70,#176ed0);
+  color: white;
+  border: 2px solid #d9b65d;
+  border-radius: 30px;
+  padding: 10px 17px;
+  font-weight: bold;
+}
+
+.mega-card h2 {
+  color: #14509a;
+  font-size: 26px;
+  margin: 17px 0;
+}
+
+.mega-card p {
+  color: #687787;
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+.mega-card .store-location {
+  margin: 18px 0;
+}
+
+.mega-card .store-access {
+  display: inline-block;
+  background: linear-gradient(110deg,#1764c0,#092c70);
+  color: white;
+  padding: 14px 25px;
+  border-radius: 30px;
+  font-weight: bold;
+  border: 2px solid #d9b65d;
+}
+
+@media(max-width:600px) {
+  .mega-card .store-logo {
+    width: 29%;
+    min-width: 105px;
+    padding: 10px;
+  }
+
+  .mega-card .store-logo img {
+    height: 115px;
+  }
+
+  .mega-card .store-info {
+    padding: 18px 13px;
+  }
+
+  .mega-card h2 {
+    font-size: 21px;
+  }
+
+  .mega-card p {
+    font-size: 14px;
+  }
+}
 </style>
 </head>
 <body>
