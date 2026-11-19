@@ -451,12 +451,16 @@ function atualizar(){
     document.getElementById("total").textContent = moeda(total);
 
     let conteudo = carrinho.length
-        ? carrinho.map((p,i) => `
-            <div class="item">
-                ${p.nome} — R$ ${moeda(p.preco)}
-                <button onclick="remover(${i})">×</button>
-            </div>
-        `).join("")
+        ? `
+    <div class="carrinho-cheio">
+        <img src="66F25DE4-3AB4-4B49-9512-436BA253F084.webp" alt="Carrinho cheio">
+    </div>
+    ${carrinho.map((p,i) => `
+        <div class="item">
+            ${p.nome} — R$ ${moeda(p.preco)}
+            <button onclick="remover(${i})">×</button>
+        </div>
+    `).join("")}
     : `
 <div class="carrinho-vazio">
     <img src="ED30557B-97E0-4C62-B886-0C67BDD7A1EF.webp" alt="Carrinho vazio">
