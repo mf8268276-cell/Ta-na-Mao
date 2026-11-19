@@ -361,18 +361,26 @@ carrinho.push(produto);
 atualizar();
 }
 
-function atualizar(){
-let total=carrinho.reduce((s,p)=>s+p.preco,0);
-document.getElementById("quantidade").textContent=carrinho.length;
-document.getElementById("total").textContent=moeda(total);
-document.getElementById("itens").innerHTML=carrinho.length?
-carrinho.map((p,i)=>`
-<div class="item">
-${p.nome} — R$ ${moeda(p.preco)}
-<button onclick="remover(${i})">×</button>
-</div>`).join(""):"Seu carrinho está vazio.";
-}
 
+function atualizar(){
+    let total = carrinho.reduce((s,p) => s + p.preco, 0);
+
+    document.getElementById("quantidade").textContent = carrinho.length;
+    document.getElementById("total").textContent = moeda(total);
+
+    let conteudo = carrinho.length
+        ? carrinho.map((p,i) => `
+            <div class="item">
+                ${p.nome} — R$ ${moeda(p.preco)}
+                <button onclick="remover(${i})">×</button>
+            </div>
+        `).join("")
+        : "<p>Seu carrinho está vazio.</p>";
+
+    document.getElementById("itens").innerHTML = conteudo;
+    document.getElementById("itens-carrinho").innerHTML = conteudo;
+    document.getElementById("total-carrinho").textContent = "R$ " + moeda(total);
+}
 function remover(i){
 carrinho.splice(i,1);
 atualizar();
