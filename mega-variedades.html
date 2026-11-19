@@ -292,6 +292,39 @@ Tudo em um só lugar, com praticidade e estilo.
 <div class="hero-decoration">🛍️</div>
 </section>
 
+<div id="formulario-pedido" class="modal-pedido">
+    <div class="formulario-caixa">
+        <button class="fechar-formulario" onclick="fecharFormulario()">×</button>
+
+        <h2>Finalizar meu pedido 🛍️</h2>
+        <p>Preencha seus dados para concluir sua compra.</p>
+
+        <label>Nome completo</label>
+        <input type="text" id="cliente-nome" placeholder="Seu nome">
+
+        <label>Endereço</label>
+        <textarea id="cliente-endereco" placeholder="Rua, número, bairro e cidade"></textarea>
+
+        <label>Forma de recebimento</label>
+        <select id="tipo-entrega" onchange="ajustarEndereco()">
+            <option value="Entrega">Entrega</option>
+            <option value="Retirada na loja">Retirada na loja</option>
+        </select>
+
+        <label>Forma de pagamento</label>
+        <select id="forma-pagamento">
+            <option value="">Selecione</option>
+            <option value="Pix">Pix</option>
+            <option value="Dinheiro">Dinheiro</option>
+            <option value="Cartão">Cartão</option>
+        </select>
+
+        <button class="enviar-pedido" onclick="enviarPedido()">
+            ENVIAR PEDIDO PELO WHATSAPP
+        </button>
+    </div>
+</div>
+
 <section class="beneficios">
 <div class="beneficio">
 <strong>✦ GRANDE VARIEDADE</strong>
