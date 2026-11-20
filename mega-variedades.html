@@ -970,23 +970,25 @@ function adicionar(id, formaPagamento) {
     let produto = produtos.find(p => p.id === id);
     if (!produto) return;
 
-    const cor = document.getElementById("cor-" + id)?.value || "";
-    const tamanho = document.getElementById("tamanho-" + id)?.value || "";
-    const numeracao = document.getElementById("numero-" + id)?.value || "";
 
-    if (produto.cores && !cor) {
-        alert("Selecione a cor do produto.");
-        return;
-    }
+const cor = document.getElementById("cor-" + id)?.value || "";
+const tamanho = document.getElementById("tamanho-" + id)?.value || "";
+const numeracao = document.getElementById("numero-" + id)?.value || "";
 
-    if (produto.tamanhos && !tamanho) {
-        alert("Selecione o tamanho do produto.");
-        return;
-    }
+if (String(produto.cores || "").trim() && !cor) {
+    alert("Selecione a cor do produto.");
+    return;
+}
 
-    if (produto.numeracao && !numeracao) {
-        alert("Selecione a numeração do produto.");
-        return;
+if (String(produto.tamanhos || "").trim() && !tamanho) {
+    alert("Selecione o tamanho do produto.");
+    return;
+}
+
+if (String(produto.numeracao || "").trim() && !numeracao) {
+    alert("Selecione a numeração do produto.");
+    return;
+}
     }
 
     let quantidadeNoCarrinho = carrinho.filter(
