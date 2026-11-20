@@ -934,12 +934,13 @@ async function mostrarProdutos() {
     COMPRAR À VISTA
 </button>
 
-                ${temPrazo ? `
-                    <button class="btn-prazo"
-                        onclick="abrirOpcoes(${p.id}, 'prazo')"
-                        ${semEstoque ? "disabled" : ""}>
-                        COMPRAR A PRAZO
-                    </button>
+
+${temPrazo ? `
+    <button class="btn-prazo"
+        onclick="adicionar(${p.id}, 'prazo')"
+        ${semEstoque ? "disabled" : ""}>
+        COMPRAR A PRAZO
+    </button>
                 ` : ""}
 
                 ${semEstoque ? "<p>PRODUTO ESGOTADO</p>" : ""}
