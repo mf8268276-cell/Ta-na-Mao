@@ -1058,13 +1058,14 @@ function ajustarEndereco() {
     }
 }
 
+
 function enviarPedido() {
     const nome = document.getElementById("cliente-nome").value.trim();
     const endereco = document.getElementById("cliente-endereco").value.trim();
     const entrega = document.getElementById("tipo-entrega").value;
     const pagamento = document.getElementById("forma-pagamento").value;
 
-    if (carrinho.length === 0) {
+    if (!carrinho.length) {
         alert("Seu carrinho está vazio.");
         return;
     }
@@ -1097,11 +1098,14 @@ function enviarPedido() {
         "PRODUTOS:\n" +
         carrinho.map(p =>
             p.nome +
-            " - R$ " + moeda(p.precoSelecionado) +
+            "\nCor: " + (p.corEscolhida || "Não se aplica") +
+            "\nTamanho: " + (p.tamanhoEscolhido || "Não se aplica") +
+            "\nNumeração: " + (p.numeracaoEscolhida || "Não se aplica") +
+            "\nPreço: R$ " + moeda(p.precoSelecionado) +
             " (" + (p.formaPagamento === "prazo"
                 ? "A prazo - " + (p.prazo_dias || 30) + " dias"
                 : "À vista") + ")"
-        ).join("\n") +
+        ).join("\n\n") +
         "\n\nTOTAL: R$ " + moeda(total);
 
     const link =
@@ -1110,6 +1114,7 @@ function enviarPedido() {
 
     window.open(link, "_blank");
 }
+
 
 atualizar();
 mostrarProdutos();
