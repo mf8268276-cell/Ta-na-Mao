@@ -842,12 +842,25 @@ function filtrar(categoria) {
         behavior: "smooth"
     });
 }
+
 function adicionar(nome) {
     let produto = produtos.find(p => p.nome === nome);
     if (!produto) return;
+
+    let quantidadeNoCarrinho = carrinho.filter(
+        p => p.id === produto.id
+    ).length;
+
+    if (quantidadeNoCarrinho >= Number(produto.estoque)) {
+        alert("Estoque limitado! Você só pode adicionar " +
+            produto.estoque + " unidade(s) deste produto.");
+        return;
+    }
+
     carrinho.push(produto);
     atualizar();
 }
+
 function atualizar() {
     let total = carrinho.reduce((s, p) => s + p.preco, 0);
     document.getElementById("quantidade").textContent = carrinho.length;
