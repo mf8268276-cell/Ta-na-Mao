@@ -975,24 +975,37 @@ function ajustarEndereco() {
         endereco.value = "";
     }
 }
+
 function enviarPedido() {
     const nome = document.getElementById("cliente-nome").value.trim();
     const endereco = document.getElementById("cliente-endereco").value.trim();
     const entrega = document.getElementById("tipo-entrega").value;
     const pagamento = document.getElementById("forma-pagamento").value;
+
+    if (carrinho.length === 0) {
+        alert("Seu carrinho está vazio.");
+        return;
+    }
+
     if (!nome) {
         alert("Informe seu nome completo.");
         return;
     }
+
     if (entrega === "Entrega" && !endereco) {
         alert("Informe seu endereço para entrega.");
         return;
     }
+
     if (!pagamento) {
         alert("Selecione a forma de pagamento.");
         return;
     }
-    const total = carrinho.reduce((s, p) => s + p.preco, 0);
+
+    const total = carrinho.reduce(
+        (s, p) => s + Number(p.precoSelecionado), 0
+    );
+
     const mensagem =
         "Olá! Quero fazer um pedido na Mega Variedades:\n\n" +
         "CLIENTE: " + nome + "\n" +
@@ -1000,13 +1013,22 @@ function enviarPedido() {
         "RECEBIMENTO: " + entrega + "\n" +
         "PAGAMENTO: " + pagamento + "\n\n" +
         "PRODUTOS:\n" +
-        carrinho.map(p => p.nome + " - R$ " + moeda(p.preco)).join("\n") +
+        carrinho.map(p =>
+            p.nome +
+            " - R$ " + moeda(p.precoSelecionado) +
+            " (" + (p.formaPagamento === "prazo"
+                ? "A prazo - " + (p.prazo_dias || 30) + " dias"
+                : "À vista") + ")"
+        ).join("\n") +
         "\n\nTOTAL: R$ " + moeda(total);
+
     const link =
         "https://wa.me/" + WHATSAPP +
         "?text=" + encodeURIComponent(mensagem);
+
     window.open(link, "_blank");
 }
+
 atualizar();
 mostrarProdutos();
 </script>
