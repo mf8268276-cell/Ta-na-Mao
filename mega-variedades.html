@@ -961,9 +961,29 @@ function filtrar(categoria) {
 }
 
 
+
 function adicionar(id, formaPagamento) {
     let produto = produtos.find(p => p.id === id);
     if (!produto) return;
+
+    const cor = document.getElementById("cor-" + id)?.value || "";
+    const tamanho = document.getElementById("tamanho-" + id)?.value || "";
+    const numeracao = document.getElementById("numero-" + id)?.value || "";
+
+    if (produto.cores && !cor) {
+        alert("Selecione a cor do produto.");
+        return;
+    }
+
+    if (produto.tamanhos && !tamanho) {
+        alert("Selecione o tamanho do produto.");
+        return;
+    }
+
+    if (produto.numeracao && !numeracao) {
+        alert("Selecione a numeração do produto.");
+        return;
+    }
 
     let quantidadeNoCarrinho = carrinho.filter(
         p => p.id === produto.id
@@ -975,24 +995,29 @@ function adicionar(id, formaPagamento) {
         return;
     }
 
-    let precoSelecionado = formaPagamento === "prazo"
-        ? Number(produto.preco_prazo)
-        : Number(produto.preco_vista ?? produto.preco);
-
     if (formaPagamento === "prazo" &&
         (produto.preco_prazo === null || produto.preco_prazo === "")) {
         alert("Este produto não possui preço a prazo.");
         return;
     }
 
+    let precoSelecionado = formaPagamento === "prazo"
+        ? Number(produto.preco_prazo)
+        : Number(produto.preco_vista ?? produto.preco);
+
     carrinho.push({
         ...produto,
+        corEscolhida: cor,
+        tamanhoEscolhido: tamanho,
+        numeracaoEscolhida: numeracao,
         formaPagamento,
         precoSelecionado
     });
 
     atualizar();
+    alert("Produto adicionado ao carrinho!");
 }
+
 
 function atualizar() {
     let total = carrinho.reduce((s, p) => s + p.precoSelecionado, 0);
