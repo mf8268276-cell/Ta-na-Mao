@@ -251,11 +251,19 @@ if(id){
 }
 
 
- if(resultado.error){msg.textContent="Erro ao salvar: "+resultado.error.message;return;}
- msg.textContent="Produto salvo com sucesso!";
- limparFormulario();
- carregarProdutos();
+if(resultado.error){
+    msg.textContent="Erro ao salvar: "+resultado.error.message;
+    console.error(resultado.error);
+    return;
 }
+
+console.log("Produto salvo:", resultado.data);
+msg.textContent="Produto salvo com sucesso!";
+
+limparFormulario();
+await carregarProdutos();
+}
+
 
 async function carregarProdutos(){
  const lista=document.getElementById("lista");
