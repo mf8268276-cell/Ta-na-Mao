@@ -184,18 +184,24 @@ async function salvarProduto(){
   const caminho=Date.now()+"-"+Math.random().toString(36).slice(2)+"."+extensao;
   const {error:uploadError}=await db.storage.from("produtos").upload(caminho,arquivo,{upsert:false});
   if(uploadError){msg.textContent="Erro ao enviar foto: "+uploadError.message;return;}
-  foto_url=db.storage.from("produtos").getPublicUrl(caminho).data.publicUrl;
- }
+  foto_url=db.storage.from("produtos").getPublicUrl(caminho).data.
 
- const produto={
+const produto={
   nome,
   descricao:document.getElementById("descricao").value.trim(),
   preco,
+  preco_vista:Number(document.getElementById("preco").value),
+  preco_prazo:Number(document.getElementById("preco_prazo").value),
+  prazo_dias:Number(document.getElementById("prazo_dias").value) || 30,
   categoria,
+  cores:document.getElementById("cores").value.trim(),
+  tamanhos:document.getElementById("tamanhos").value.trim(),
+  numeracao:document.getElementById("numeracao").value.trim(),
   estoque,
   ativo:document.getElementById("ativo").checked
- };
- if(foto_url)produto.foto_url=foto_url;
+};
+
+if(foto_url)produto.foto_url=foto_url;
 
  let resultado;
  if(id){
