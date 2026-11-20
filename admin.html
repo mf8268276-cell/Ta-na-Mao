@@ -121,15 +121,39 @@ const SUPABASE_KEY = "sb_publishable_HB0hPO_bDmQ3_V4hVrQIPQ_rxbQxp79";
 
 const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
+
 async function entrar(){
  const email=document.getElementById("email").value.trim();
  const senha=document.getElementById("senha").value;
  const msg=document.getElementById("msgLogin");
+
+ if(!email || !senha){
+   msg.textContent="Informe seu e-mail e sua senha.";
+   return;
+ }
+
  msg.textContent="Verificando...";
- const {error}=await db.auth.signInWithPassword({email,password:senha});
- if(error){msg.textContent="Não foi possível entrar: "+error.message;return;}
- mostrarPainel();
+
+ try {
+   const {error}=await db.auth.signInWithPassword({
+     email:email,
+     password:senha
+   });
+
+   if(error){
+     msg.textContent="Não foi possível entrar: "+error.message;
+     return;
+   }
+
+   msg.textContent="Login realizado!";
+   mostrarPainel();
+
+ } catch(erro) {
+   msg.textContent="Erro no sistema: "+erro.message;
+   console.error(erro);
+ }
 }
+
 
 async function mostrarPainel(){
  const {data:{session}}=await db.auth.getSession();
