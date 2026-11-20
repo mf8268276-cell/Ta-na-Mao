@@ -257,19 +257,31 @@ async function carregarProdutos(){
  });
 }
 
+
 function editarProduto(p){
  document.getElementById("produtoId").value=p.id;
  document.getElementById("nome").value=p.nome;
  document.getElementById("descricao").value=p.descricao||"";
- document.getElementById("preco").value=p.preco;
+
+ document.getElementById("preco").value=p.preco_vista ?? p.preco ?? "";
+ document.getElementById("preco_prazo").value=p.preco_prazo ?? "";
+ document.getElementById("prazo_dias").value=p.prazo_dias ?? 30;
+
  document.getElementById("categoria").value=p.categoria;
+ document.getElementById("cores").value=p.cores||"";
+ document.getElementById("tamanhos").value=p.tamanhos||"";
+ document.getElementById("numeracao").value=p.numeracao||"";
+
  document.getElementById("estoque").value=p.estoque;
  document.getElementById("ativo").checked=p.ativo;
  document.getElementById("foto").value="";
+
  document.getElementById("tituloFormulario").textContent="Editar produto";
  document.getElementById("msgProduto").textContent="Se escolher uma nova foto, ela substituirá a foto exibida.";
+
  window.scrollTo({top:0,behavior:"smooth"});
 }
+
 
 async function excluirProduto(id){
  if(!confirm("Deseja realmente excluir este produto?"))return;
