@@ -841,6 +841,41 @@ async function mostrarProdutos() {
     if (error) {
         console.error("Erro ao carregar produtos:", error);
         document.getElementById("lista").innerHTML =
+            "<p>Não foi possível carregar os produtos.</
+            
+            
+            
+function montarSeletor(id, titulo, valor) {
+    const opcoes = String(valor || "")
+        .split(",")
+        .map(item => item.trim())
+        .filter(Boolean);
+
+    if (!opcoes.length) return "";
+
+    return `
+        <div class="seletor-produto">
+            <label for="${id}">${titulo}</label>
+            <select id="${id}">
+                <option value="">Selecione ${titulo.toLowerCase()}</option>
+                ${opcoes.map(item =>
+                    `<option value="${item}">${item}</option>`
+                ).join("")}
+            </select>
+        </div>
+    `;
+}
+
+async function mostrarProdutos() {
+    const { data, error } = await db
+        .from("produtos")
+        .select("*")
+        .eq("ativo", true)
+        .order("criado_em", { ascending: false });
+
+    if (error) {
+        console.error("Erro ao carregar produtos:", error);
+        document.getElementById("lista").innerHTML =
             "<p>Não foi possível carregar os produtos.</p>";
         return;
     }
@@ -854,8 +889,7 @@ async function mostrarProdutos() {
     document.getElementById("lista").innerHTML = lista.map(p => {
         const vista = Number(p.preco_vista ?? p.preco);
         const prazo = Number(p.preco_prazo);
-        const estoque = Number(p.estoque);
-        const semEstoque = estoque <= 0;
+        const semEstoque = Number(p.estoque) <= 0;
 
         return `
         <div class="produto">
@@ -884,22 +918,24 @@ async function mostrarProdutos() {
                     : ""
                 }
 
-                ${p.cores ? `<p><strong>Cores:</strong> ${p.cores}</p>` : ""}
-                ${p.tamanhos ? `<p><strong>Tamanhos:</strong> ${p.tamanhos}</p>` : ""}
-                ${p.numeracao ? `<p><strong>Numeração:</strong> ${p.numeracao}</p>` : ""}
+                ${montarSeletor("cor-" + p.id, "Cor", p.cores)}
+                ${montarSeletor("tamanho-" + p.id, "Tamanho", p.tamanhos)}
+                ${montarSeletor("numero-" + p.id, "Numeração", p.numeracao)}
 
-                
-<button class="btn-vista" onclick="adicionar(${p.id}, 'vista')" ${semEstoque ? "disabled" : ""}>
-    COMPRAR À VISTA
-</button>
+                <button class="btn-vista"
+                    onclick="adicionar(${p.id}, 'vista')"
+                    ${semEstoque ? "disabled" : ""}>
+                    COMPRAR À VISTA
+                </button>
 
-${p.preco_prazo !== null && p.preco_prazo !== ""
-    ? `<button class="btn-prazo" onclick="adicionar(${p.id}, 'prazo')" ${semEstoque ? "disabled" : ""}>
-        COMPRAR A PRAZO
-       </button>`
-    : ""
-}
-
+                ${p.preco_prazo !== null && p.preco_prazo !== ""
+                    ? `<button class="btn-prazo"
+                        onclick="adicionar(${p.id}, 'prazo')"
+                        ${semEstoque ? "disabled" : ""}>
+                        COMPRAR A PRAZO
+                       </button>`
+                    : ""
+                }
 
                 ${semEstoque ? "<p>PRODUTO ESGOTADO</p>" : ""}
             </div>
@@ -907,6 +943,7 @@ ${p.preco_prazo !== null && p.preco_prazo !== ""
         `;
     }).join("");
 }
+
 
 
 function filtrar(categoria) {
