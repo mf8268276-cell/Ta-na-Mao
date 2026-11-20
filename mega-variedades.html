@@ -960,7 +960,6 @@ function filtrar(categoria) {
 }
 
 
-
 function adicionar(id, formaPagamento) {
     let produto = produtos.find(p => p.id === id);
     if (!produto) return;
@@ -1014,9 +1013,9 @@ function adicionar(id, formaPagamento) {
     });
 
     atualizar();
+    fecharOpcoes();
     alert("Produto adicionado ao carrinho!");
 }
-
 
 function atualizar() {
     let total = carrinho.reduce((s, p) => s + p.precoSelecionado, 0);
