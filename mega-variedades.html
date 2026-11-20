@@ -869,6 +869,7 @@ function montarSeletor(id, titulo, valor) {
     `;
 }
 
+
 async function mostrarProdutos() {
     const { data, error } = await db
         .from("produtos")
@@ -892,6 +893,8 @@ async function mostrarProdutos() {
     document.getElementById("lista").innerHTML = lista.map(p => {
         const vista = Number(p.preco_vista ?? p.preco);
         const prazo = Number(p.preco_prazo);
+        const temPrazo = p.preco_prazo !== null &&
+                         p.preco_prazo !== "";
         const semEstoque = Number(p.estoque) <= 0;
 
         return `
@@ -905,7 +908,7 @@ async function mostrarProdutos() {
             </div>
 
             <div class="info">
-                <small>${p.categoria.toUpperCase()}</small>
+                <small>${String(p.categoria || "").toUpperCase()}</small>
                 <h3>${p.nome}</h3>
 
                 <div class="preco">
@@ -913,32 +916,26 @@ async function mostrarProdutos() {
                     <small>À vista</small>
                 </div>
 
-                ${p.preco_prazo !== null && p.preco_prazo !== ""
-                    ? `<div class="preco">
+                ${temPrazo ? `
+                    <div class="preco">
                         R$ ${moeda(prazo)}
                         <small>A prazo em ${p.prazo_dias || 30} dias</small>
-                       </div>`
-                    : ""
-                }
-
-                ${montarSeletor("cor-" + p.id, "Cor", p.cores)}
-                ${montarSeletor("tamanho-" + p.id, "Tamanho", p.tamanhos)}
-                ${montarSeletor("numero-" + p.id, "Numeração", p.numeracao)}
+                    </div>
+                ` : ""}
 
                 <button class="btn-vista"
-                    onclick="adicionar(${p.id}, 'vista')"
+                    onclick="abrirOpcoes(${p.id}, 'vista')"
                     ${semEstoque ? "disabled" : ""}>
                     COMPRAR À VISTA
                 </button>
 
-                ${p.preco_prazo !== null && p.preco_prazo !== ""
-                    ? `<button class="btn-prazo"
-                        onclick="adicionar(${p.id}, 'prazo')"
+                ${temPrazo ? `
+                    <button class="btn-prazo"
+                        onclick="abrirOpcoes(${p.id}, 'prazo')"
                         ${semEstoque ? "disabled" : ""}>
                         COMPRAR A PRAZO
-                       </button>`
-                    : ""
-                }
+                    </button>
+                ` : ""}
 
                 ${semEstoque ? "<p>PRODUTO ESGOTADO</p>" : ""}
             </div>
@@ -946,7 +943,6 @@ async function mostrarProdutos() {
         `;
     }).join("");
 }
-
 
 
 function filtrar(categoria) {
