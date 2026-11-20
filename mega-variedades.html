@@ -847,7 +847,26 @@ function moeda(valor) {
         maximumFractionDigits: 2
     });
 }
+function montarSeletor(id, titulo, valor) {
+    const opcoes = String(valor || "")
+        .split(",")
+        .map(item => item.trim())
+        .filter(Boolean);
 
+    if (!opcoes.length) return "";
+
+    return `
+        <div class="seletor-produto">
+            <label for="${id}">${titulo}</label>
+            <select id="${id}">
+                <option value="">Selecione ${titulo.toLowerCase()}</option>
+                ${opcoes.map(item =>
+                    `<option value="${item}">${item}</option>`
+                ).join("")}
+            </select>
+        </div>
+    `;
+}
 
 async function mostrarProdutos() {
     const { data, error } = await db
