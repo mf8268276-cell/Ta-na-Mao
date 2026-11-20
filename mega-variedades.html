@@ -942,7 +942,11 @@ ${temPrazo ? `
         COMPRAR A PRAZO
     </button>
                 ` : ""}
-
+                <div class="opcoes-produto">
+                    ${montarSeletor("cor-" + p.id, "Cor", p.cores)}
+                    ${montarSeletor("tamanho-" + p.id, "Tamanho", p.tamanhos)}
+                    ${montarSeletor("numero-" + p.id, "Numeração", p.numeracao)}
+                </div>
                 ${semEstoque ? "<p>PRODUTO ESGOTADO</p>" : ""}
             </div>
         </div>
