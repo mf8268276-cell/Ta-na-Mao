@@ -878,8 +878,9 @@ function filtrar(categoria) {
     });
 }
 
-function adicionar(nome) {
-    let produto = produtos.find(p => p.nome === nome);
+
+function adicionar(id, formaPagamento) {
+    let produto = produtos.find(p => p.id === id);
     if (!produto) return;
 
     let quantidadeNoCarrinho = carrinho.filter(
@@ -892,12 +893,27 @@ function adicionar(nome) {
         return;
     }
 
-    carrinho.push(produto);
+    let precoSelecionado = formaPagamento === "prazo"
+        ? Number(produto.preco_prazo)
+        : Number(produto.preco_vista ?? produto.preco);
+
+    if (formaPagamento === "prazo" &&
+        (produto.preco_prazo === null || produto.preco_prazo === "")) {
+        alert("Este produto não possui preço a prazo.");
+        return;
+    }
+
+    carrinho.push({
+        ...produto,
+        formaPagamento,
+        precoSelecionado
+    });
+
     atualizar();
 }
 
 function atualizar() {
-    let total = carrinho.reduce((s, p) => s + p.preco, 0);
+    let total = carrinho.reduce((s, p) => s + p.precoSelecionado, 0);
     document.getElementById("quantidade").textContent = carrinho.length;
     let conteudo;
     if (carrinho.length > 0) {
@@ -908,7 +924,7 @@ function atualizar() {
             </div>
             ${carrinho.map((p, i) => `
                 <div class="item">
-                    <span>${p.nome} — R$ ${moeda(p.preco)}</span>
+                    <span>${p.nome} — R$ ${moeda(p.precoSelecionado)} (${p.formaPagamento === "prazo" ? "A prazo" : "À vista"})</span>
                     <button onclick="remover(${i})">×</button>
                 </div>
             `).join("")}
