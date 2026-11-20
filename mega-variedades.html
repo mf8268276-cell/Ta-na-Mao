@@ -787,6 +787,7 @@ function moeda(valor) {
     });
 }
 
+
 async function mostrarProdutos() {
     const { data, error } = await db
         .from("produtos")
@@ -807,7 +808,13 @@ async function mostrarProdutos() {
         categoriaAtual === "Todos" || p.categoria === categoriaAtual
     );
 
-    document.getElementById("lista").innerHTML = lista.map(p => `
+    document.getElementById("lista").innerHTML = lista.map(p => {
+        const vista = Number(p.preco_vista ?? p.preco);
+        const prazo = Number(p.preco_prazo);
+        const estoque = Number(p.estoque);
+        const semEstoque = estoque <= 0;
+
+        return `
         <div class="produto">
             <div class="foto">
                 ${p.foto_url
@@ -816,18 +823,46 @@ async function mostrarProdutos() {
                 }
                 <small>MEGA VARIEDADES</small>
             </div>
+
             <div class="info">
                 <small>${p.categoria.toUpperCase()}</small>
                 <h3>${p.nome}</h3>
-                <div class="preco">R$ ${moeda(Number(p.preco))}</div>
-                <button onclick="adicionar('${p.nome.replace(/'/g, "\\'")}')"
-                    ${Number(p.estoque) <= 0 ? "disabled" : ""}>
-                    ${Number(p.estoque) <= 0 ? "ESGOTADO" : "ADICIONAR AO CARRINHO"}
+
+                <div class="preco">
+                    R$ ${moeda(vista)}
+                    <small>À vista</small>
+                </div>
+
+                ${p.preco_prazo !== null && p.preco_prazo !== ""
+                    ? `<div class="preco">
+                        R$ ${moeda(prazo)}
+                        <small>A prazo em ${p.prazo_dias || 30} dias</small>
+                       </div>`
+                    : ""
+                }
+
+                ${p.cores ? `<p><strong>Cores:</strong> ${p.cores}</p>` : ""}
+                ${p.tamanhos ? `<p><strong>Tamanhos:</strong> ${p.tamanhos}</p>` : ""}
+                ${p.numeracao ? `<p><strong>Numeração:</strong> ${p.numeracao}</p>` : ""}
+
+                <button onclick="adicionar(${p.id}, 'vista')" ${semEstoque ? "disabled" : ""}>
+                    COMPRAR À VISTA
                 </button>
+
+                ${p.preco_prazo !== null && p.preco_prazo !== ""
+                    ? `<button onclick="adicionar(${p.id}, 'prazo')" ${semEstoque ? "disabled" : ""}>
+                        COMPRAR A PRAZO
+                       </button>`
+                    : ""
+                }
+
+                ${semEstoque ? "<p>PRODUTO ESGOTADO</p>" : ""}
             </div>
         </div>
-    `).join("");
+        `;
+    }).join("");
 }
+
 
 function filtrar(categoria) {
     categoriaAtual = categoria;
