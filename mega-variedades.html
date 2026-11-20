@@ -927,11 +927,12 @@ async function mostrarProdutos() {
                     </div>
                 ` : ""}
 
-                <button class="btn-vista"
-                    onclick="abrirOpcoes(${p.id}, 'vista')"
-                    ${semEstoque ? "disabled" : ""}>
-                    COMPRAR À VISTA
-                </button>
+
+<button class="btn-vista"
+    onclick="adicionar(${p.id}, 'vista')"
+    ${semEstoque ? "disabled" : ""}>
+    COMPRAR À VISTA
+</button>
 
                 ${temPrazo ? `
                     <button class="btn-prazo"
