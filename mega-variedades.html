@@ -841,41 +841,6 @@ async function mostrarProdutos() {
     if (error) {
         console.error("Erro ao carregar produtos:", error);
         document.getElementById("lista").innerHTML =
-            "<p>Não foi possível carregar os produtos.</
-            
-            
-            
-function montarSeletor(id, titulo, valor) {
-    const opcoes = String(valor || "")
-        .split(",")
-        .map(item => item.trim())
-        .filter(Boolean);
-
-    if (!opcoes.length) return "";
-
-    return `
-        <div class="seletor-produto">
-            <label for="${id}">${titulo}</label>
-            <select id="${id}">
-                <option value="">Selecione ${titulo.toLowerCase()}</option>
-                ${opcoes.map(item =>
-                    `<option value="${item}">${item}</option>`
-                ).join("")}
-            </select>
-        </div>
-    `;
-}
-
-async function mostrarProdutos() {
-    const { data, error } = await db
-        .from("produtos")
-        .select("*")
-        .eq("ativo", true)
-        .order("criado_em", { ascending: false });
-
-    if (error) {
-        console.error("Erro ao carregar produtos:", error);
-        document.getElementById("lista").innerHTML =
             "<p>Não foi possível carregar os produtos.</p>";
         return;
     }
