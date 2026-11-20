@@ -221,8 +221,9 @@ if(arquivo){
         return;
     }
 
-    foto_url=db.storage.from("produtos")
-        .getPublicUrl(caminho).data.publicUrl;
+    foto_url = db.storage
+    .from("produtos")
+    .getPublicUrl(caminho).data.publicUrl;
 }
 
 const produto={
